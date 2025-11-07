@@ -1,0 +1,19 @@
+#pragma once
+#include "raylib.hpp"
+
+enum Type
+    {
+        NONE,
+        SAFE,
+        BASE_WALL,
+        BASE_SPAWN,
+        BASE_SPECIAL,
+        PAWN_HOME,
+        PAWN_PATH
+    };
+
+const Color LUDORED   = {236, 28, 34,255};
+const Color LUDOGREEN = {1, 161, 70,255};
+const Color LUDOBLUE  = {37, 174, 253, 255};
+const Color LUDOYELLOW = {254, 223, 22,255};
+const Color LUDOGRAY = {161, 161, 161, 255};
