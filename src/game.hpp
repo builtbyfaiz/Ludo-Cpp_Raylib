@@ -3,9 +3,10 @@
 
 class Game
 {
+    public:
+
     Board board;
     
-    public:
     Game();
     ~Game();
 

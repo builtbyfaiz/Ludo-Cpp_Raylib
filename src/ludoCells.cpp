@@ -1,46 +1,42 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "raylib.h"
+#include "raylib-cpp.hpp"
 #include "constants.hpp"
+#include "ludoCell.hpp"
 #include "ludoCells.hpp"
 #include "maps.hpp"
 
 /// @brief Draw Ludo Cells, Their Outlines and their IDs
 void ludoCell::render()
 {
-    DrawRectangleRec(rect, color);                              // Draw Boxes
-    DrawRectangleLinesEx(rect, outlineThickness, outlineColor); // Draw Outline of them
+    rect.Draw(color);                               // Draw The Cell
+    rect.DrawLines(outlineColor, outlineThickness); // Draw Outline of the Cell, If thickness > 0
 
-    int fontSize = rect.height / 2.5;
-    int textY = rect.y + (rect.height - fontSize) / 2;
-    int textX = rect.x + (rect.width - fontSize - 20) / 2; // Not perfect but almost enough
+    // int fontSize = rect.height / 2.5;
+    // int textY = rect.y + (rect.height - fontSize) / 2;
+    // int textX = rect.x + (rect.width - fontSize - 20) / 2; // Not perfect but almost enough
 
-    int ID = gridID;
-    if (specialID > 0)
-        ID = specialID;
-    if (pathID > 0)
-        ID = pathID;
-
+    // int ID = gridID;
+    // if (specialID > 0)
+    //     ID = specialID;
+    // if (pathID > 0)
+    //     ID = pathID;
     // DrawText(std::to_string(ID).c_str(), textX, textY, fontSize, BLACK); // Draw numbers in them, also MAGIC nums :P
 }
 
 /// @brief Draw All Cells in the 'cells' vector
 void ludoCells::render()
 {
-    for (auto &cellRow : cellsGrid)
-    {
-        for (auto &cell : cellRow)
-        {
+    DrawRectangle(10, 10, 25, 25, raylib::RED);
+    for (auto &row : cellsGrid)
+        for (auto &cell : row)
             cell.render();
-        }
-    }
 }
 
 /// @brief Create the board by initializing all cells
 ludoCells::ludoCells()
 {
-
     for (size_t y = 0; y < 15; y++)
     {
         std::vector<ludoCell> cellsRow;
@@ -49,18 +45,15 @@ ludoCells::ludoCells()
             float width = GetScreenWidth() / 15;
             float height = GetScreenHeight() / 15;
             ludoCell cell(
-                x * width,                           // x-position
-                y * height,                          // y-position
-                width,                               // width
-                height,                              // height
-                colorLegend[colorMap[y][x]],         // color from legend
-                y * 15 + x + 1,                      // grid ID
-                specialIDLegend[specialIDMap[y][x]], // special cell ID, 1-6
-                pathIDMap[y][x]                      // Direct path that all pawns move on
+                {x * width, y * height, width, height}, // Rectangle itself
+                colorLegend[colorMap[y][x]],            // color from legend
+                y * 15 + x + 1,                         // grid ID
+                specialIDLegend[specialIDMap[y][x]],    // special cell ID, 1-6
+                pathIDMap[y][x]                         // Direct path that all pawns move on
             );
             if (cell.getSpecialID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);
-            
+
             cellsRow.push_back(cell);
         }
         cellsGrid.push_back(cellsRow);
@@ -73,7 +66,7 @@ ludoCells::ludoCells()
 }
 
 // Setter Methods
-void ludoCell::setColor(Color c) { color = c; }
+void ludoCell::setColor(raylib::Color c) { color = c; }
 void ludoCell::setGridID(const int ID) { gridID = ID; }
 void ludoCell::setPathID(const int ID) { pathID = ID; }
 void ludoCell::setSpecialID(const int ID) { specialID = ID; }

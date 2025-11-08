@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
-#include "raylib.hpp"
+#include "raylib-cpp.hpp"
 #include "constants.hpp"
 
 // Grid color mapping for the Ludo board.
@@ -26,13 +26,13 @@ std::string colorMap[15] = {
 
 // Mapping from color code characters to Raylib Color objects.
 // Used to render the board grid with appropriate colors.
-std::map<char, Color> colorLegend = {
+std::map<char, raylib::Color> colorLegend = {
     {'R', LUDORED},    // Top-left home area
     {'G', LUDOGREEN},  // Top-right home area
     {'B', LUDOBLUE},   // Bottom-left home area
     {'Y', LUDOYELLOW}, // Bottom-right home area
-    {'O', BLACK},      // Central void cells
-    {' ', WHITE}       // Path cells
+    {'O', raylib::BLACK},      // Central void cells
+    {' ', raylib::WHITE}       // Path cells
 };
 
 // Special cell ID mapping for the Ludo board.

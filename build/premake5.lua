@@ -207,6 +207,7 @@ if (downloadRaylib) then
         
         includedirs { "../src" }
         includedirs { "../include" }
+        includedirs { "../include/raylibCpp" }
 
         links {"raylib"}
 
@@ -236,6 +237,9 @@ if (downloadRaylib) then
 
         filter "system:macosx"
             links {"OpenGL.framework", "Cocoa.framework", "IOKit.framework", "CoreFoundation.framework", "CoreAudio.framework", "CoreVideo.framework", "AudioToolbox.framework"}
+        
+        filter "action:gmake*"
+             buildoptions { "-Wno-shadow" }
 
         filter{}
         

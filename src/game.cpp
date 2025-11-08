@@ -13,7 +13,7 @@ void Game::run()
         update();
         render();
     }
-    CloseWindow(); // leaving this here till i figure how a destructor works
+    CloseWindow(); // leaving this here till i figure how destructor of this works
 }
 
 void Game::handleInput()
@@ -27,8 +27,8 @@ void Game::update()
 void Game::render()
 {
     BeginDrawing();
-    ClearBackground(BLACK);
-
+    ClearBackground(raylib::BLACK);
+    
     board.render();
 
     EndDrawing();

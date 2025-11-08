@@ -1,5 +1,7 @@
 #pragma once
-#include "raylib.hpp"
+#include "raylib-cpp.hpp"
+
+using namespace raylib;
 
 enum Type
     {
@@ -12,8 +14,8 @@ enum Type
         PAWN_PATH
     };
 
-const Color LUDORED   = {236, 28, 34,255};
-const Color LUDOGREEN = {1, 161, 70,255};
-const Color LUDOBLUE  = {37, 174, 253, 255};
-const Color LUDOYELLOW = {250, 220, 22,255};
-const Color LUDOGRAY = {0, 0, 0, 255};
+const raylib::Color LUDORED   = {236, 28, 34,255};
+const raylib::Color LUDOGREEN = {1, 161, 70,255};
+const raylib::Color LUDOBLUE  = {37, 174, 253, 255};
+const raylib::Color LUDOYELLOW = {250, 220, 22,255};
+const raylib::Color LUDOGRAY = {0, 0, 0, 255};
