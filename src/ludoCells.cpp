@@ -44,7 +44,7 @@ void ludoCells::init()
             int pathID    = pathIDMap[y][x] ;
             int specialID = specialIDLegend[specialIDMap[y][x]];
 
-            std::cout << width << height;
+            // std::cout << width << height;
             ludoCell cell(
                 rect,                        // Rectangle itself
                 color, // Color from legend
