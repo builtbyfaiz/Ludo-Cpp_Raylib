@@ -2,7 +2,7 @@
 #include <string>
 #include <map>
 #include "raylib-cpp.hpp"
-#include "constants.hpp"
+#include "globals.hpp"
 
 // Grid color mapping for the Ludo board.
 // Each string represents a row; characters correspond to color codes defined in colorLegend.

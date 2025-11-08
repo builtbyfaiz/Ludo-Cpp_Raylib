@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "raylib-cpp.hpp"
-#include "constants.hpp"
+#include "globals.hpp"
 #include "ludoCell.hpp"
 
 class ludoCells

@@ -2,7 +2,7 @@
 #include <string>
 #include <map>
 #include "raylib-cpp.hpp"
-#include "constants.hpp"
+#include "globals.hpp"
 #include "ludoCell.hpp"
 #include "ludoCells.hpp"
 #include "maps.hpp"

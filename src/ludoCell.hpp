@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib-cpp.hpp"
-#include "constants.hpp"
+#include "globals.hpp"
 
 using namespace raylib;
 class ludoCell
