@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
-#include <map>
-#include "raylib-cpp.hpp"
 #include "globals.hpp"
+#include "raylib-cpp.hpp"
+#include <map>
+#include <string>
 
 // Grid color mapping for the Ludo board.
 // Each string represents a row; characters correspond to color codes defined in colorLegend.
@@ -27,12 +27,12 @@ std::string colorMap[15] = {
 // Mapping from color code characters to Raylib Color objects.
 // Used to render the board grid with appropriate colors.
 std::map<char, raylib::Color> colorLegend = {
-    {'R', LUDORED},    // Top-left home area
-    {'G', LUDOGREEN},  // Top-right home area
-    {'B', LUDOBLUE},   // Bottom-left home area
-    {'Y', LUDOYELLOW}, // Bottom-right home area
-    {'O', raylib::BLACK},      // Central void cells
-    {' ', raylib::WHITE}       // Path cells
+    {'R', LUDORED},       // Top-left home area
+    {'G', LUDOGREEN},     // Top-right home area
+    {'B', LUDOBLUE},      // Bottom-left home area
+    {'Y', LUDOYELLOW},    // Bottom-right home area
+    {'O', raylib::BLACK}, // Central void cells
+    {' ', raylib::WHITE}  // Path cells
 };
 
 // Special cell ID mapping for the Ludo board.
@@ -58,13 +58,8 @@ std::string specialIDMap[15] = {
 // Mapping from special cell ID characters to integer values.
 // Used for identifying special cells programmatically.
 std::map<char, int> specialIDLegend = {
-    {'1', 1},
-    {'2', 2},
-    {'3', 3},
-    {'4', 4},
-    {'5', 5},
-    {'6', 6},
-    {' ', -1} // Non-special cells
+    {'1', 1}, {'2', 2}, {'3', 3}, {'4', 4},
+    {'5', 5}, {'6', 6}, {' ', -1} // Non-special cells
 };
 
 // Path ID mapping for the Ludo board.
@@ -79,11 +74,10 @@ int pathIDMap[15][15] = {
     {-1, -1, -1, -1, -1, -1, 19, -1, 31, -1, -1, -1, -1, -1, -1},
     {13, 14, 15, 16, 17, 18, -1, -1, -1, 32, 33, 34, 35, 36, 37},
     {12, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38},
-    {11, 10,  9,  8,  7,  6, -1, -1, -1, 44, 43, 42, 41, 40, 39},
-    {-1, -1, -1, -1, -1, -1,  5, -1, 45, -1, -1, -1, -1, -1, -1},
-    {-1, -1, -1, -1, -1, -1,  4, -1, 46, -1, -1, -1, -1, -1, -1},
-    {-1, -1, -1, -1, -1, -1,  3, -1, 47, -1, -1, -1, -1, -1, -1},
-    {-1, -1, -1, -1, -1, -1,  2, -1, 48, -1, -1, -1, -1, -1, -1},
-    {-1, -1, -1, -1, -1, -1,  1, -1, 49, -1, -1, -1, -1, -1, -1},
-    {-1, -1, -1, -1, -1, -1, 52, 51, 50, -1, -1, -1, -1, -1, -1}
-};
+    {11, 10, 9, 8, 7, 6, -1, -1, -1, 44, 43, 42, 41, 40, 39},
+    {-1, -1, -1, -1, -1, -1, 5, -1, 45, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, 4, -1, 46, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, 3, -1, 47, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, 2, -1, 48, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, 1, -1, 49, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, 52, 51, 50, -1, -1, -1, -1, -1, -1}};

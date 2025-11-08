@@ -1,15 +1,15 @@
 #pragma once
-#include <vector>
-#include "raylib-cpp.hpp"
 #include "globals.hpp"
 #include "ludoCell.hpp"
+#include "raylib-cpp.hpp"
+#include <vector>
+
 
 class ludoCells
 {
-public:
+  public:
     std::vector<std::vector<ludoCell>> cellsGrid; // 2D Vector, same as arr[][]
 
     ludoCells();
-
     void render();
 };

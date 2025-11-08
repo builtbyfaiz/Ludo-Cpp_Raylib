@@ -1,24 +1,26 @@
 #pragma once
-#include "raylib-cpp.hpp"
 #include "globals.hpp"
+#include "raylib-cpp.hpp"
 
-using namespace raylib;
+// clang-format off
 class ludoCell
 {
-
-private:
+  private: 
     raylib::Color color;
-    int gridID = -1, pathID = -1, specialID = -1;
-    raylib::Color outlineColor = LUDOGRAY;
-    float outlineThickness = 0;
+    int           gridID           = -1,
+                  pathID           = -1,
+                  specialID        = -1;
+    float         outlineThickness =  0;
+    raylib::Color outlineColor     = LUDOGRAY;
 
-public:
+  public:
     raylib::Rectangle rect;
 
-    ludoCell() : rect(0, 0, 0, 0), color(raylib::WHITE) {}
-    ludoCell(raylib::Rectangle r,
-             raylib::Color c = raylib::RED,
-             int gID = -1, int sID = -1, int pID = -1)
+    ludoCell(raylib::Rectangle r = {0, 0, 0, 0} ,
+             raylib::Color     c = raylib::WHITE,
+             int             gID = -1,
+             int             sID = -1,
+             int             pID = -1)
         : rect(r), color(c), gridID(gID), specialID(sID), pathID(pID) {}
 
     void render();

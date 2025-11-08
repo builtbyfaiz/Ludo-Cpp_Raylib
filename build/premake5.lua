@@ -187,6 +187,9 @@ if (downloadRaylib) then
         filter "action:vs*"
             debugdir "$(SolutionDir)"
 
+        filter {"action:gmake*"}
+            buildoptions { "-Wno-shadow" }  -- suppress shadow variable warnings
+
         filter {"action:gmake*"} -- Uncoment if you need to force StaticLib
 --          buildoptions { "-static" }
         filter{}
@@ -214,10 +217,10 @@ if (downloadRaylib) then
         cdialect "C17"
         cppdialect "C++17"
 
-        includedirs {raylib_dir .. "/src" }
-        includedirs {raylib_dir .."/src/external" }
+        includedirs { raylib_dir .."/src" }
+        includedirs { raylib_dir .."/src/external" }
         includedirs { raylib_dir .."/src/external/glfw/include" }
-        flags { "ShadowedVariables"}
+        flags { "ShadowedVariables" }
         platform_defines()
 
         filter "action:vs*"
@@ -237,9 +240,6 @@ if (downloadRaylib) then
 
         filter "system:macosx"
             links {"OpenGL.framework", "Cocoa.framework", "IOKit.framework", "CoreFoundation.framework", "CoreAudio.framework", "CoreVideo.framework", "AudioToolbox.framework"}
-        
-        filter "action:gmake*"
-             buildoptions { "-Wno-shadow" }
 
         filter{}
         
