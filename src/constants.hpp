@@ -15,5 +15,5 @@ enum Type
 const Color LUDORED   = {236, 28, 34,255};
 const Color LUDOGREEN = {1, 161, 70,255};
 const Color LUDOBLUE  = {37, 174, 253, 255};
-const Color LUDOYELLOW = {254, 223, 22,255};
-const Color LUDOGRAY = {161, 161, 161, 255};
+const Color LUDOYELLOW = {250, 220, 22,255};
+const Color LUDOGRAY = {0, 0, 0, 255};

@@ -20,7 +20,7 @@ public:
              int gID = -1, int sID = -1, int pID = -1)
         : rect({x, y, w, h}), color(c), gridID(gID), specialID(sID), pathID(pID) {}
 
-    void draw();
+    void render();
     void setColor(Color color);
     void setGridID(int gridID);
     void setPathID(int pathID);
@@ -39,5 +39,5 @@ public:
 
     ludoCells();
 
-    void draw();
+    void render();
 };
