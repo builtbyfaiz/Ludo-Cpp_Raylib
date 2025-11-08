@@ -3,7 +3,6 @@
 /// @brief Draw a Ludo Cell
 void ludoCell::render()
 {
-    DrawRectangle(10, 10, 25, 25, raylib::RED);
     rect.Draw(color); // Draw The Cell
     rect.DrawLines(
         outlineColor,
