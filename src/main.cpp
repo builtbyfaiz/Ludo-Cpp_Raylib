@@ -2,8 +2,8 @@
 
 int main()
 {
-    Game ludoGame;  //Create one instance of the game
-    ludoGame.run(); //Run it
+    Game ludoGame;  //Create one instance of the ludo game
+    ludoGame.run(); //Run the game loop
 
     return 0;
 }

@@ -11,5 +11,7 @@ class ludoCells
     std::vector<std::vector<ludoCell>> cellsGrid; // 2D Vector, same as arr[][]
 
     ludoCells();
+    
+    void init();
     void render();
 };

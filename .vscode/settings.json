@@ -63,6 +63,7 @@
 		"typeinfo": "cpp",
 		"variant": "cpp",
 		"map": "cpp",
-		"queue": "cpp"
+		"queue": "cpp",
+		"*.m": "cpp"
 	}
 }
