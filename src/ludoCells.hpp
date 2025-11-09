@@ -5,12 +5,12 @@
 #include <vector>
 
 
-class ludoCells
+class LudoCells
 {
   public:
-    std::vector<std::vector<ludoCell>> cellsGrid; // 2D Vector, same as arr[][]
+    std::vector<std::vector<LudoCell>> cellsGrid; // 2D Vector, same as arr[][]
 
-    ludoCells();
+    LudoCells();
     
     void init();
     void render();

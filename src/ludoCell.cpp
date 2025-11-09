@@ -1,7 +1,7 @@
 #include "ludoCell.hpp"
 
 /// @brief Draw a Ludo Cell
-void ludoCell::render()
+void LudoCell::render()
 {
     rect.Draw(color); // Draw The Cell
     rect.DrawLines(
@@ -23,15 +23,17 @@ void ludoCell::render()
 }
 
 // Setter Methods
-void ludoCell::setColor (raylib::Color  c) { color     =   c; }  
-void ludoCell::setGridID   (const int gID) { gridID    = gID; }
-void ludoCell::setPathID   (const int pID) { pathID    = pID; }
-void ludoCell::setSpecialID(const int sID) { specialID = sID; }
-void ludoCell::setOutlineThickness(float thickness)
+void LudoCell::setColor (raylib::Color  c) { color     =   c; }  
+void LudoCell::setGridID   (const int gID) { gridID    = gID; }
+void LudoCell::setPathID   (const int pID) { pathID    = pID; }
+void LudoCell::setHomeID   (const int hID) { homeID    = hID; }
+void LudoCell::setSpecialID(const int sID) { specialID = sID; }
+void LudoCell::setOutlineThickness(float thickness)
 {
     outlineThickness = thickness;
 }
 
-int ludoCell::getGridID()    { return gridID;    }
-int ludoCell::getPathID()    { return pathID;    }
-int ludoCell::getSpecialID() { return specialID; }
+int LudoCell::getGridID()    { return gridID;    }
+int LudoCell::getPathID()    { return pathID;    }
+int LudoCell::getHomeID()    { return homeID;    }
+int LudoCell::getSpecialID() { return specialID; }
