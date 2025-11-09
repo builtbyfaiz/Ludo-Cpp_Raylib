@@ -1,6 +1,10 @@
 #include "board.hpp"
 
-void Board::init() { cells.init(); }
+void Board::init()
+{
+    cells.init();
+    pawns.init(cells);
+}
 
 void Board::update() {}
 

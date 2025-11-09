@@ -33,7 +33,10 @@ void LudoCell::setOutlineThickness(float thickness)
     outlineThickness = thickness;
 }
 
+
 int LudoCell::getGridID()    { return gridID;    }
 int LudoCell::getPathID()    { return pathID;    }
 int LudoCell::getHomeID()    { return homeID;    }
 int LudoCell::getSpecialID() { return specialID; }
+raylib::Rectangle LudoCell::getRect() { return rect; }
+
