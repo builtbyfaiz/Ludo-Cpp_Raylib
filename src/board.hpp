@@ -11,7 +11,7 @@ class Board
     Pawns pawns;
 
   public:
-    Board() : pawns(&cells) { init(); };
+    Board() { init(); };
 
     void init();
     void update();

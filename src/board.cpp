@@ -1,9 +1,5 @@
 #include "board.hpp"
 
-Pawns Board::pawns(LudoCells *cells) { return Pawns(); }
-
-Board::Board() { init(); }
-
 void Board::init()
 {
     cells.init();

@@ -16,7 +16,7 @@ class Pawns
     public:
     std::vector<Pawn> allPawns;
 
-    Pawns(LudoCells *cells);
+    Pawns() = default;
 
     void init(LudoCells *cells);
     void render();

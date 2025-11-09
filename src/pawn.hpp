@@ -8,7 +8,7 @@ class Pawn
 {
   private:
     int ID;
-    int score = 0;
+    int distance = 0;
     bool moveable = false;
 
     int size = 15;
@@ -26,10 +26,9 @@ class Pawn
 
     LudoCell *currentCell = nullptr;
     LudoCell *homeCell;
-    LudoCell *spawnCell;
 
     // Easter Egg Left By Faiz
-    Pawn( LudoCell *hC );
+    Pawn ( LudoCell *hC );
 
     void update();
     void render();

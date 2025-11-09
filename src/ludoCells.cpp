@@ -1,5 +1,5 @@
 #include "ludoCells.hpp"
-#include "cellMaps.hpp"
+#include "mappingsCells.hpp"
 #include "globals.hpp"
 #include "ludoCell.hpp"
 #include "raylib-cpp.hpp"
@@ -52,6 +52,7 @@ void LudoCells::init()
                 type,                        // Path, Home, Other etc.
                 gridID,                      // Grid ID... All Cells Numerized
                 pathID,                      // Special cell ID, (1-6 win path)
+                homeID,
                 specialID                    // Path Id of Direct path that all pawns move on
             );
             // if (cell.getSpecialID() > 0 || cell.getPathID() > 0)
