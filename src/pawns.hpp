@@ -14,10 +14,10 @@ class Pawns
     std::vector<Pawn> pawnSet4;
 
     public:
-    std::vector<std::vector<Pawn>> allPawns;
+    std::vector<Pawn> allPawns;
 
-    Pawns(LudoCells &cells);
+    Pawns(LudoCells *cells);
 
-    void init(LudoCells &cells);
+    void init(LudoCells *cells);
 
 };

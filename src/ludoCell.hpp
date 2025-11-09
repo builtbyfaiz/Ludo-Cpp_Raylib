@@ -36,6 +36,7 @@ class LudoCell
     int getPathID();
     int getHomeID();
     int getSpecialID();
+    raylib::Color getColor();
     raylib::Rectangle getRect();
 
     // Setters

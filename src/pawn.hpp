@@ -24,18 +24,17 @@ class Pawn
         WON
     } state = State::IN_HOME;
 
-    LudoCell *currentCell;
+    LudoCell *currentCell = nullptr;
     LudoCell *homeCell;
     LudoCell *spawnCell;
 
     // Easter Egg Left By Faiz
-    Pawn(int x = 10, int y = 10, raylib::Color c = ::WHITE,
-         LudoCell *cc = nullptr)
-        : rect(x, y, size, size), color(c), currentCell(cc), homeCell(cc)
-    {
-    }
+    Pawn( LudoCell *hC )
+        : homeCell(hC), ID(hC->getHomeID()) { moveTo(homeCell); }
+
     void update();
     void render();
+    
     void returnHome();               //Aka die
     void exitHome();                 //Aka be Born
     void moveTo(LudoCell *nextCell); //Aka Keep moving Forward #eren

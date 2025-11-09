@@ -3,7 +3,7 @@
 void Board::init()
 {
     cells.init();
-    pawns.init(cells);
+    pawns.init(&cells);
 }
 
 void Board::update() {}
