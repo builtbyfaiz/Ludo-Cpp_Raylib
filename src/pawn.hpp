@@ -13,7 +13,7 @@ class Pawn
 
     int size = 15;
     raylib::Color color;
-    raylib::Rectangle rect = {0, 0, 0, 0};
+    raylib::Rectangle rect = {10, 10, 10, 10};
 
   public:
     enum class State
@@ -28,7 +28,8 @@ class Pawn
     LudoCell *homeCell;
     LudoCell *spawnCell;
 
-    Pawn(int x = 0, int y = 0, raylib::Color c = ::WHITE,
+    // Easter Egg Left By Faiz
+    Pawn(int x = 10, int y = 10, raylib::Color c = ::WHITE,
          LudoCell *cc = nullptr)
         : rect(x, y, size, size), color(c), currentCell(cc), homeCell(cc)
     {
