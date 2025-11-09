@@ -5,11 +5,14 @@
 class Board
 {
   private:
-    LudoCells cells; // #TODO Dice, Pawns.. dice.hpp, pawn.hpp, handleinput for dice,
-                     // handleinput for pawn, handle input for path
+    LudoCells
+        cells; // #TODO Dice, Pawns.. dice.hpp, pawn.hpp, handleinput for dice,
+               // handleinput for pawn, handle input for path
     Pawns pawns;
 
   public:
+    Board() : pawns(&cells) { init(); };
+
     void init();
     void update();
     void render();

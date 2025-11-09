@@ -31,3 +31,11 @@ void Pawns::init(LudoCells *cells)
         }
     }
 }
+
+void Pawns::render()
+{
+    for (auto &pawn : allPawns)
+    {
+        pawn.render();
+    }
+}

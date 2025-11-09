@@ -1,5 +1,9 @@
 #include "board.hpp"
 
+Pawns Board::pawns(LudoCells *cells) { return Pawns(); }
+
+Board::Board() { init(); }
+
 void Board::init()
 {
     cells.init();
@@ -8,4 +12,8 @@ void Board::init()
 
 void Board::update() {}
 
-void Board::render() { cells.render(); }
+void Board::render()
+{
+    cells.render();
+    pawns.render();
+}

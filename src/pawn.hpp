@@ -29,8 +29,7 @@ class Pawn
     LudoCell *spawnCell;
 
     // Easter Egg Left By Faiz
-    Pawn( LudoCell *hC )
-        : homeCell(hC), ID(hC->getHomeID()) { moveTo(homeCell); }
+    Pawn( LudoCell *hC );
 
     void update();
     void render();

@@ -1,10 +1,13 @@
 #include "pawn.hpp"
 #include "ludoCell.hpp"
 
-void Pawn::update()
+Pawn::Pawn(LudoCell *hC)
+    : homeCell(hC), ID(hC->getHomeID())
 {
-    
+    moveTo(homeCell);
 }
+
+void Pawn::update() {}
 
 void Pawn::render() { rect.Draw(color); }
 

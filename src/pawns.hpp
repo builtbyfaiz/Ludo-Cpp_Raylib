@@ -19,5 +19,5 @@ class Pawns
     Pawns(LudoCells *cells);
 
     void init(LudoCells *cells);
-
+    void render();
 };
