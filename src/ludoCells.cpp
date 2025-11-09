@@ -1,12 +1,11 @@
 #include "ludoCells.hpp"
-#include "mappingsCells.hpp"
 #include "globals.hpp"
 #include "ludoCell.hpp"
+#include "mappingsCells.hpp"
 #include "raylib-cpp.hpp"
 #include <iostream>
 #include <map>
 #include <string>
-
 
 /// @brief Draw All Cells in the 'cells' vector
 void LudoCells::render()
@@ -20,14 +19,13 @@ void LudoCells::render()
 
 // clang-format off
 /// @brief Create the board by initializing all cells
-LudoCells::LudoCells()
-{
-   init();
-}
+LudoCells::LudoCells(){}
 
 void LudoCells::init() 
 {
-     for (size_t y = 0; y < 15; y++)
+    cellsGrid.clear();
+    
+    for (size_t y = 0; y < 15; y++)
     {
         std::vector<LudoCell> cellsRow;
         for (size_t x = 0; x < 15; x++)
@@ -55,7 +53,7 @@ void LudoCells::init()
                 homeID,
                 specialID                    // Path Id of Direct path that all pawns move on
             );
-            // if (cell.getSpecialID() > 0 || cell.getPathID() > 0)
+            if (cell.getSpecialID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);
 
             cellsRow.push_back(cell);

@@ -10,16 +10,15 @@ void LudoCell::render()
 
     // int fontSize = rect.height / 2.5;
     // int textY = rect.y + (rect.height - fontSize) / 2;
-    // int textX = rect.x + (rect.width - fontSize - 20) / 2; // Not perfect but
-    // almost enough
+    // int textX = rect.x + (rect.width - fontSize - 20) / 2; // Not perfect but almost enough
 
     // int ID = gridID;
     // if (specialID > 0)
     //     ID = specialID;
     // if (pathID > 0)
     //     ID = pathID;
-    // DrawText(std::to_string(ID).c_str(), textX, textY, fontSize, BLACK); //
-    // Draw numbers in them, also MAGIC nums :P
+    // if (homeID >0) ID = homeID;
+    // DrawText(std::to_string(ID).c_str(), textX, textY, fontSize, BLACK); // Draw numbers in them, also MAGIC nums :P
 }
 
 // Setter Methods

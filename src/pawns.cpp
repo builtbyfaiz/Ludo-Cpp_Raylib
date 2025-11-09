@@ -1,5 +1,6 @@
 #include "pawns.hpp"
 #include "ludoCells.hpp"
+#include <iostream>
 
 void Pawns::init(LudoCells *cells)
 {
@@ -16,6 +17,7 @@ void Pawns::init(LudoCells *cells)
             }
         }
     }
+    std::cout << allPawns.size();
 }
 
 void Pawns::render()

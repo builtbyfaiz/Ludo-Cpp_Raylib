@@ -1,10 +1,13 @@
 #pragma once
-#include "Color.hpp"
 #include "globals.hpp"
+#include "raylib-cpp.hpp"
 #include <map>
+
 
 // Home ID to Pawn Color
 std::map<int, raylib::Color> colorLegendPawns = {
+    {0, WHITE},
+
     {1, LUDORED}, // Top-left 1
     {2, LUDORED}, // Top-left 2
     {3, LUDORED}, // Top-left 3
@@ -23,5 +26,5 @@ std::map<int, raylib::Color> colorLegendPawns = {
     {13, LUDOYELLOW}, // Bottom-right 1
     {14, LUDOYELLOW}, // Bottom-right 2
     {15, LUDOYELLOW}, // Bottom-right 3
-    {16, LUDOYELLOW}, // Bottom-right 4
+    {16, LUDOYELLOW}  // Bottom-right 4
 };

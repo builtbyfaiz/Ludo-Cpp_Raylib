@@ -2,6 +2,7 @@
 #include "raylib-cpp.hpp"
 
 // clang-format off
+// This type is depracated
 enum Type
 {
     NONE,

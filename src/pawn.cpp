@@ -25,7 +25,7 @@ void Pawn::moveTo(LudoCell *nextCell)
 
     currentCell = nextCell;
     Vector2 newPos =
-        currentCell->getRect().GetPosition() +
-        currentCell->getRect().GetSize() / 2; // Gets Pos right in mid of cell
+        currentCell->getRect().GetPosition() + ((currentCell->getRect().GetSize() - rect.GetSize()) / 2); // Gets Pos right in mid of cell
+
     rect.SetPosition(newPos); // sets pawns rect to middle of cells rect
 }

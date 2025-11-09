@@ -11,9 +11,9 @@ class Pawn
     int distance = 0;
     bool moveable = false;
 
-    int size = 15;
+    float size = 30;
     raylib::Color color;
-    raylib::Rectangle rect = {10, 10, 10, 10};
+    raylib::Rectangle rect = {10, 10, size, size}; // Default
 
   public:
     enum class State
@@ -34,6 +34,5 @@ class Pawn
     void render();
     
     void returnHome();               //Aka die
-    void exitHome();                 //Aka be Born
     void moveTo(LudoCell *nextCell); //Aka Keep moving Forward #eren
 };

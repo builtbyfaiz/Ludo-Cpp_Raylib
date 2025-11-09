@@ -12,7 +12,7 @@ class LudoCell
                      pathID,
                      homeID,
                   specialID;
-    float         outlineThickness;
+    float         outlineThickness = 0;
     raylib::Color outlineColor     = LUDOGRAY;
     raylib::Rectangle rect;
     

@@ -11,7 +11,7 @@ class Board
     Pawns pawns;
 
   public:
-    Board() { init(); };
+    Board() {};
 
     void init();
     void update();
