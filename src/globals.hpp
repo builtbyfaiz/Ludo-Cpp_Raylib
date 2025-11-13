@@ -15,8 +15,8 @@ enum Type
 };
 
 //Color-Pallete defined as RGBA values
-const raylib::Color LUDORED    = {236, 28 , 34 , 255};
-const raylib::Color LUDOGREEN  = {1  , 161, 70 , 255};
-const raylib::Color LUDOBLUE   = {37 , 174, 253, 255};
-const raylib::Color LUDOYELLOW = {250, 220, 22 , 255};
+const raylib::Color LUDO_RED    = {236, 28 , 34 , 255};
+const raylib::Color LUDO_GREEN  = {1  , 161, 70 , 255};
+const raylib::Color LUDO_BLUE   = {37 , 174, 253, 255};
+const raylib::Color LUDO_YELLOW = {250, 220, 22 , 255};
 const raylib::Color LUDOGRAY   = {0  , 0  , 0  , 255};

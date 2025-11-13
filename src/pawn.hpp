@@ -8,24 +8,20 @@ class Pawn
 {
   private:
     int ID;
-    int distance = 0;
-    bool moveable = false;
-
+    int score = 0;
+    
     float size = 30;
     raylib::Color color;
     raylib::Rectangle rect = {10, 10, size, size}; // Default
-
-  public:
-    enum class State
-    {
-        IN_HOME,
-        MOVEABLE,
-        FROZEN,
-        WON
-    } state = State::IN_HOME;
+    
+    public:
+    bool isMoveable = false;
+    
 
     LudoCell *currentCell = nullptr;
-    LudoCell *homeCell;
+    LudoCell *homeCell = nullptr;
+    LudoCell *spawnCell = nullptr;
+    
 
     // Easter Egg Left By Faiz
     Pawn ( LudoCell *hC );
@@ -35,4 +31,11 @@ class Pawn
     
     void returnHome();               //Aka die
     void moveTo(LudoCell *nextCell); //Aka Keep moving Forward #eren
+    void spawn();
+    void die();
+
+    const raylib::Rectangle   getRect();
+    const raylib::Color getColor();
+    const bool getState();
+    const int getScore();
 };

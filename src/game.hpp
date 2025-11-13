@@ -4,7 +4,10 @@
 class Game {
   public:
     Board board;
-
+    // Player player1;
+    // player2;
+    // player3;
+    // player4;
     Game();
     ~Game();
 

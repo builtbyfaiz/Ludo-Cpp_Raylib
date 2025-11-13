@@ -8,23 +8,30 @@
 std::map<int, raylib::Color> colorLegendPawns = {
     {0, WHITE},
 
-    {1, LUDORED}, // Top-left 1
-    {2, LUDORED}, // Top-left 2
-    {3, LUDORED}, // Top-left 3
-    {4, LUDORED}, // Top-left 4
+    {1, LUDO_RED}, // Top-left 1
+    {2, LUDO_RED}, // Top-left 2
+    {3, LUDO_RED}, // Top-left 3
+    {4, LUDO_RED}, // Top-left 4
 
-    {5, LUDOGREEN}, // Top-right 1
-    {6, LUDOGREEN}, // Top-right 2
-    {7, LUDOGREEN}, // Top-right 3
-    {8, LUDOGREEN}, // Top-right 4
+    {5, LUDO_GREEN}, // Top-right 1
+    {6, LUDO_GREEN}, // Top-right 2
+    {7, LUDO_GREEN}, // Top-right 3
+    {8, LUDO_GREEN}, // Top-right 4
 
-    {9, LUDOBLUE},  // Bottom-left 1
-    {10, LUDOBLUE}, // Bottom-left 2
-    {11, LUDOBLUE}, // Bottom-left 3
-    {12, LUDOBLUE}, // Bottom-left 4
+    {9, LUDO_BLUE},  // Bottom-left 1
+    {10, LUDO_BLUE}, // Bottom-left 2
+    {11, LUDO_BLUE}, // Bottom-left 3
+    {12, LUDO_BLUE}, // Bottom-left 4
 
-    {13, LUDOYELLOW}, // Bottom-right 1
-    {14, LUDOYELLOW}, // Bottom-right 2
-    {15, LUDOYELLOW}, // Bottom-right 3
-    {16, LUDOYELLOW}  // Bottom-right 4
+    {13, LUDO_YELLOW}, // Bottom-right 1
+    {14, LUDO_YELLOW}, // Bottom-right 2
+    {15, LUDO_YELLOW}, // Bottom-right 3
+    {16, LUDO_YELLOW}  // Bottom-right 4
+};
+
+std::map<raylib::Color, raylib::Vector2> colorSpawnMap= {
+    {LUDO_RED,    {1, 6}},
+    {LUDO_GREEN,  {6, 1}},
+    {LUDO_BLUE,   {6,13}},
+    {LUDO_YELLOW, {13,6}}
 };

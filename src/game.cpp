@@ -12,7 +12,9 @@ void Game::run()
     CloseWindow(); // leaving this here till i figure how destructor of this works
 }
 
-void Game::handleInput() {}
+void Game::handleInput() {
+    
+}
 
 void Game::update() {}
 

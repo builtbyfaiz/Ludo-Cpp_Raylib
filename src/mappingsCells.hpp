@@ -30,10 +30,10 @@ std::string colorMap[15] = {
 // Used to render the board grid with appropriate colors.
 std::map<char, raylib::Color> colorLegend = 
 {
-    {'R', LUDORED      }, // Top-left  
-    {'G', LUDOGREEN    }, // Top-right 
-    {'B', LUDOBLUE     }, // Bottom-left  
-    {'Y', LUDOYELLOW   }, // Bottom-right
+    {'R', LUDO_RED      }, // Top-left  
+    {'G', LUDO_GREEN    }, // Top-right 
+    {'B', LUDO_BLUE     }, // Bottom-left  
+    {'Y', LUDO_YELLOW   }, // Bottom-right
     {'O', raylib::BLACK}, // Central void cells
     {' ', raylib::WHITE}  // Path cells
 };

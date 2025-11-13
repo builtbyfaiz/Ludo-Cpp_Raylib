@@ -7,17 +7,13 @@ class Pawns
 {
     private:
     
-
-    std::vector<Pawn> pawnSet1;
-    std::vector<Pawn> pawnSet2;
-    std::vector<Pawn> pawnSet3;
-    std::vector<Pawn> pawnSet4;
-
     public:
     std::vector<Pawn> allPawns;
 
     Pawns() = default;
 
     void init(LudoCells *cells);
+    void assignSpawnCells(LudoCells *cells);
     void render();
+    void handleInput();
 };

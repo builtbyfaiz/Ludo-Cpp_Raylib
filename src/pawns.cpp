@@ -1,5 +1,6 @@
 #include "pawns.hpp"
 #include "ludoCells.hpp"
+#include "mappingsPawns.hpp"
 #include <iostream>
 
 void Pawns::init(LudoCells *cells)
@@ -12,12 +13,15 @@ void Pawns::init(LudoCells *cells)
         {
             if (cell.getHomeID() > 0)
             {
-                Pawn newPawn(&cell);
+                Pawn newPawn(&cell); // Assign Home Cell
+                newPawn.spawnCell =
+                    &cells->cellsGrid[colorSpawnMap[newPawn.getColor()].y]
+                                     [colorSpawnMap[newPawn.getColor()].x];
                 allPawns.push_back(newPawn);
             }
         }
     }
-    std::cout << allPawns.size();
+    assignSpawnCells(cells);
 }
 
 void Pawns::render()
@@ -26,4 +30,9 @@ void Pawns::render()
     {
         pawn.render();
     }
+}
+
+void Pawns::handleInput() 
+{
+    
 }
