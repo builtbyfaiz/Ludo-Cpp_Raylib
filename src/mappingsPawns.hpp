@@ -29,7 +29,13 @@ std::map<int, raylib::Color> colorLegendPawns = {
     {16, LUDO_YELLOW}  // Bottom-right 4
 };
 
-std::map<raylib::Color, raylib::Vector2> colorSpawnMap= {
+raylib::Vector2 colorSpawnMap(const raylib::Color color){
+    if(color==LUDO_RED)    return {1, 6};
+    if(color==LUDO_GREEN)  return {1, 6};
+    if(color==LUDO_BLUE)   return {1, 6};
+    if(color==LUDO_YELLOW) return {1, 6};
+}
+std::map<raylib::Color, raylib::Vector2> colorSpawnaMap= {
     {LUDO_RED,    {1, 6}},
     {LUDO_GREEN,  {6, 1}},
     {LUDO_BLUE,   {6,13}},

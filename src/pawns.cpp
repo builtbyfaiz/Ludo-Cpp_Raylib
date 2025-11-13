@@ -15,8 +15,8 @@ void Pawns::init(LudoCells *cells)
             {
                 Pawn newPawn(&cell); // Assign Home Cell
                 newPawn.spawnCell =
-                    &cells->cellsGrid[colorSpawnMap[newPawn.getColor()].y]
-                                     [colorSpawnMap[newPawn.getColor()].x];
+                    &cells->cellsGrid[colorSpawnMap(newPawn.getColor()).y]
+                                     [colorSpawnMap(newPawn.getColor()).x];
                 allPawns.push_back(newPawn);
             }
         }
