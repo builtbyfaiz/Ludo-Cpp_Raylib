@@ -1,6 +1,39 @@
 #include "board.hpp"
 #include <iostream>
 
+void Board::handleClick()
+{
+    for (auto &&pawn : pawns.allPawns)
+    {
+        if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
+            continue;
+
+        if (isPawnValid(pawn))
+
+            if (!pawn.isMoveable && dice == 6)
+                pawn.spawn();
+
+            else if (pawn.isMoveable)
+                pawns.move(pawn, dice);
+    }
+    turn++;
+}
+
+void Board::rollDice() {}
+
+bool Board::isPawnValid(Pawn pawn)
+{
+    switch (turn) // clang-format off
+    {
+    case 1: if (pawn.getColor() == LUDO_RED   ) return true; else return false;
+    case 2: if (pawn.getColor() == LUDO_GREEN ) return true; else return false;
+    case 3: if (pawn.getColor() == LUDO_BLUE  ) return true; else return false;
+    case 4: if (pawn.getColor() == LUDO_YELLOW) return true; else return false;
+
+    default: return false;
+    } // clang-format on
+}
+
 void Board::init()
 {
     cells.init();
@@ -9,56 +42,30 @@ void Board::init()
 
 void Board::handleInput()
 {
-    int turn = 1;
-    std::cout << "sup nigga, dis built by faiz";
-    for (size_t turn = 1; turn < 5; turn++)
+    // Roll Dice
+    // Click Pawn (if Pawn == Own Color)
+    // Move Accordingly
+    // Roll Dice Again
+
+    char keyboardInput;
+    std::cout << "Player" << turn << " enter 'r' to roll dice: ";
+    std::cin >> keyboardInput;
+    if (keyboardInput == 'r' || keyboardInput == 'R')
     {
-        int dice = GetRandomValue(1, 6);
-        std::cout << "Player" << turn << "You Rolled: " << dice << std::endl;
-        turn = turn > 4 ? 1 : turn;
+        rollDice();
+    }
+    else
+    {
+        std::cout << std::endl << "Wrong Input" << std::endl;
+        return;
     }
 
-    raylib::Color playerColor;
-    switch (turn) // clang-format off
-    {
-    case 1: playerColor = LUDO_RED;    break;
-    case 2: playerColor = GREEN;  break;
-    case 3: playerColor = BLUE;   break;
-    case 4: playerColor = YELLOW; break;
+    if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        return;
 
-    default:
-        turn = 1;
-        std::cout << "something went wrong with turn var";
-        break;
-    } // clang-format on
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        Vector2 mousePos = GetMousePosition();
-        for (auto &pawn : pawns.allPawns)
-        {
-            if (CheckCollisionPointRec(mousePos, pawn.getRect()))
-            {
-                switch (turn)
-                {
-                case 1:
-                    playerColor = RED;
-                    // if(dice==6)
-                    // if(pawn.getColor()==RED&&!pawn.isMoveable) pawn.distance += dice;
-                    break;
-                case 2:
-                    playerColor = GREEN;
-                    break;
-                case 3:
-                    playerColor = BLUE;
-                    break;
-                case 4:
-                    playerColor = YELLOW;
-                    break;
-                }
-            }
-        }
-    }
+    handleClick();
 }
+
 void Board::update() {}
 
 void Board::render()

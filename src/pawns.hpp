@@ -9,11 +9,12 @@ class Pawns
     
     public:
     std::vector<Pawn> allPawns;
-
+    LudoCells *cells;
     Pawns() = default;
 
     void init(LudoCells *cells);
-    void assignSpawnCells(LudoCells *cells);
+    void move(Pawn pawn, int amount);
+
     void render();
     void handleInput();
 };

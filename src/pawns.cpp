@@ -6,7 +6,7 @@
 void Pawns::init(LudoCells *cells)
 {
     raylib::Color color;
-
+    this->cells = cells;
     for (auto &row : cells->cellsGrid)
     {
         for (auto &cell : row)
@@ -21,7 +21,23 @@ void Pawns::init(LudoCells *cells)
             }
         }
     }
-    assignSpawnCells(cells);
+}
+
+void Pawns::move(Pawn pawn, int amount) 
+{
+    
+    int newPathID = pawn.currentCell->getPathID() + amount;
+    for (int i=0;i<15;i++)
+    {
+        for (int j=0;j<15;j++)
+        {
+            if(cells->cellsGrid[i][j].getPathID()==newPathID) 
+            {
+                pawn.moveTo(&cells->cellsGrid[i][j]);
+                return;
+            }
+        }
+    }
 }
 
 void Pawns::render()
@@ -34,5 +50,5 @@ void Pawns::render()
 
 void Pawns::handleInput() 
 {
-    
+
 }
