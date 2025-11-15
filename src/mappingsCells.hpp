@@ -7,7 +7,7 @@
 // clang-format off
 // Grid color mapping for the Ludo board.
 // Each string represents a row; characters correspond to color codes defined in colorLegend.
-std::string colorMap[15] = {
+inline std::string colorMap[15] = {
 
     "RRRRRR   GGGGGG", // Row 1
     "R    R GGG    G", // Row 2
@@ -28,7 +28,7 @@ std::string colorMap[15] = {
 
 // Mapping from color code characters to Raylib Color objects.
 // Used to render the board grid with appropriate colors.
-std::map<char, raylib::Color> colorLegend = 
+inline std::map<char, raylib::Color> colorLegend = 
 {
     {'R', LUDO_RED      }, // Top-left  
     {'G', LUDO_GREEN    }, // Top-right 
@@ -41,7 +41,7 @@ std::map<char, raylib::Color> colorLegend =
 // Path ID mapping for the Ludo board.
 // 2D array where each cell contains a unique path ID or 0 if not part of the path.
 // Used for movement logic and win condition checks.
-int pathIDMap[15][15] = 
+inline int pathIDMap[15][15] = 
 {
     { 0,  0,  0,  0,  0,  0, 24, 25, 26,  0,  0,  0,  0,  0,  0},
     { 0,  0,  0,  0,  0,  0, 23,  0, 27,  0,  0,  0,  0,  0,  0},
@@ -60,7 +60,7 @@ int pathIDMap[15][15] =
     { 0,  0,  0,  0,  0,  0, 52, 51, 50,  0,  0,  0,  0,  0,  0}
 };
 
-int homeIDMap[15][15] = {{0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+inline int homeIDMap[15][15] = {{0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
                          {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
                          {0, 0,  1,  2, 0, 0, 0, 0, 0, 0, 0,  5,  6, 0, 0},
                          {0, 0,  3,  4, 0, 0, 0, 0, 0, 0, 0,  7,  8, 0, 0},
@@ -78,7 +78,8 @@ int homeIDMap[15][15] = {{0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
 
 // Special cell ID mapping for the Ludo board.
 // Each string represents a row; numeric characters indicate special cells leading to the center/win.
-std::string specialIDMap[15] = 
+
+inline std::string specialIDMap[15] = 
 {
     "000000000000000", // Row01
     "000000010000000", // Row 2

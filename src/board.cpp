@@ -3,41 +3,46 @@
 
 void Board::handleClick()
 {
+    bool nextTurn = false;
     for (auto &&pawn : pawns.allPawns)
     {
         if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
             continue;
 
-        if (isPawnValid(pawn))
-
+        if (pawn.isValidOnTurn(turn))
+        {
             if (!pawn.isMoveable && dice == 6)
                 pawn.spawn();
 
             else if (pawn.isMoveable)
                 pawns.move(pawn, dice);
+        }
     }
     turn++;
 }
 
-void Board::rollDice() {}
-
-bool Board::isPawnValid(Pawn pawn)
+void Board::rollDice()
 {
-    switch (turn) // clang-format off
-    {
-    case 1: if (pawn.getColor() == LUDO_RED   ) return true; else return false;
-    case 2: if (pawn.getColor() == LUDO_GREEN ) return true; else return false;
-    case 3: if (pawn.getColor() == LUDO_BLUE  ) return true; else return false;
-    case 4: if (pawn.getColor() == LUDO_YELLOW) return true; else return false;
+    // char keyboardInput;
+    // std::cout << "Player" << turn << " enter 'r' to roll dice: ";
 
-    default: return false;
-    } // clang-format on
+    // if(!IsKeyPressed(KeyboardKey::KEY_R)) {
+    //     std::cout << std::endl << "Wrong Input" << std::endl;
+    //     return;
+    // }
+
+    // Automatic Dice for Now
+    if (isNextTurn)
+    {
+        dice = GetRandomValue(1, 6);
+        std::cout << "Player" << turn << " Rolled a " << dice;
+    }
 }
 
 void Board::init()
 {
     cells.init();
-    pawns.init(&cells);
+    pawns.init();
 }
 
 void Board::handleInput()
@@ -47,23 +52,11 @@ void Board::handleInput()
     // Move Accordingly
     // Roll Dice Again
 
-    char keyboardInput;
-    std::cout << "Player" << turn << " enter 'r' to roll dice: ";
-    std::cin >> keyboardInput;
-    if (keyboardInput == 'r' || keyboardInput == 'R')
-    {
-        rollDice();
-    }
-    else
-    {
-        std::cout << std::endl << "Wrong Input" << std::endl;
-        return;
-    }
-
     if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         return;
 
     handleClick();
+    rollDice();
 }
 
 void Board::update() {}

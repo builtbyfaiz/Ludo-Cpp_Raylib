@@ -2,11 +2,13 @@
 #include "ludoCells.hpp"
 #include "mappingsPawns.hpp"
 #include <iostream>
+#include <string>
 
-void Pawns::init(LudoCells *cells)
+void Pawns::init()
 {
     raylib::Color color;
-    this->cells = cells;
+    // std::cout<<"Reportin Duty debug";
+    // std::cout<<static_cast<std::string>(cells->cellsGrid[2][3].getColor());
     for (auto &row : cells->cellsGrid)
     {
         for (auto &cell : row)
@@ -14,16 +16,17 @@ void Pawns::init(LudoCells *cells)
             if (cell.getHomeID() > 0)
             {
                 Pawn newPawn(&cell); // Assign Home Cell
-                newPawn.spawnCell =
-                    &cells->cellsGrid[colorSpawnMap(newPawn.getColor()).y]
-                                     [colorSpawnMap(newPawn.getColor()).x];
+                // newPawn.spawnCell =
+                //     &cells->cellsGrid[colorSpawnMap(newPawn.getColor()).y]
+                //                      [colorSpawnMap(newPawn.getColor()).x];
                 allPawns.push_back(newPawn);
             }
         }
     }
 }
 
-void Pawns::move(Pawn pawn, int amount) 
+
+void Pawns::move(Pawn &pawn, int amount)
 {
     
     int newPathID = pawn.currentCell->getPathID() + amount;
@@ -44,6 +47,9 @@ void Pawns::render()
 {
     for (auto &pawn : allPawns)
     {
+        // std::cout<<pawn.getRect().x;
+        // std::cout<<pawn.getRect().y;
+        // std::cout<<pawn.getRect().width;
         pawn.render();
     }
 }

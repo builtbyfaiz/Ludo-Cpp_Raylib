@@ -10,10 +10,10 @@ class Pawns
     public:
     std::vector<Pawn> allPawns;
     LudoCells *cells;
-    Pawns() = default;
+    Pawns(LudoCells* cells) : cells(cells) {}
 
-    void init(LudoCells *cells);
-    void move(Pawn pawn, int amount);
+    void init();
+    void move(Pawn &pawn, int amount);
 
     void render();
     void handleInput();

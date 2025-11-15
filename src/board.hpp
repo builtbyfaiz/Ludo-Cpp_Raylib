@@ -10,16 +10,15 @@ class Board
                // handleinput for pawn, handle input for path
 
     Pawns pawns;
-    int   turn = 1;
-    int   dice = 0; 
+    bool  isNextTurn = false;
+    int   turn       = 1;
+    int   dice       = 0;
 
 
   public:
-    Board() {};
-
+     Board() : pawns(&cells) {}
     void handleClick();
     void rollDice();
-    bool isPawnValid(Pawn pawn);
     
     void init();
     void handleInput();
