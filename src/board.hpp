@@ -18,7 +18,7 @@ class Board
   public:
      Board() : pawns(&cells) {}
     void handleClick();
-    void autoRollDice();
+    void rollDiceSmart();
     
     void init();
     void handleInput();

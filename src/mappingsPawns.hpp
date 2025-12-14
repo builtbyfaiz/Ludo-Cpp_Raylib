@@ -32,11 +32,12 @@ inline std::map<int, raylib::Color> colorLegendPawns = {
 // Returns Vector2 of 2d Array indices corresponding to the spawn cell on a 15 by 15 Grid
 inline raylib::Vector2 colorSpawnMap(const raylib::Color color)
 {
-    if(color==LUDO_RED)    return {1, 6};
-    if(color==LUDO_GREEN)  return {6, 1};
-    if(color==LUDO_BLUE)   return {6, 13};
-    if(color==LUDO_YELLOW) return {13, 6};
-    return {0,0};
+    // inline keyword is here being used to prevent multiple definitions, did this because map did not work for custom datatypes
+    if     (color==LUDO_RED)    return {1, 6};
+    else if(color==LUDO_GREEN)  return {8, 1};
+    else if(color==LUDO_BLUE)   return {6, 13};
+    else if(color==LUDO_YELLOW) return {13, 8};
+    else return {0,0};
 }
 // std::map<raylib::Color, raylib::Vector2> colorSpawnaMap= {
 //     {LUDO_RED,    {1, 6}},

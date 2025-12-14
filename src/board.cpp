@@ -5,48 +5,47 @@ void Board::handleClick()
 {
     for (auto &pawn : pawns.allPawns)
     {
-        // std::cout<<pawn.getColor().ToString()<<"\n";
-        // std::cout<<pawn.getState()<<"\n";
-        // std::cout<<pawn.getScore()<<"\n";
-        // std::cout<<pawn.getRect().x<<"\n";
 
         if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
             continue;
 
-        std::cout<<"Collision with: "<<pawn.getRect().x;
         if (pawn.isValidOnTurn(turn))
         {
-            std::cout<<"Pawn valid" <<pawn.getRect().x;
-            std::cout<<"Pawn moveable" <<pawn.getState();
-
-            if (!pawn.isMoveable && dice == 6) {
+            if (!pawn.isSpawned && dice == 6)
+            {
                 pawn.spawn();
-                // std::cout<<"spawn cell:" <<pawn.spawnCell->getRect().x;}
             }
-            else if (pawn.isMoveable)
+            else if (pawn.isSpawned && pawn.isMoveable)
+            {
                 pawns.move(pawn, dice);
+                std::cout << "Pawn Moved" << "\n";
+            }
 
-            turn++;
-            std::cout<<"turn";
+            if (!dice == 6) {
+                turn++;
+                turn = (turn % 4);
+            }
+
+            // std::cout << "Dice:" << dice << "\n";
+            // std::cout << "Turn: " << turn << "\n";
         }
     }
-    
 }
 
-void Board::autoRollDice()
+void Board::rollDiceSmart()
 {
     // char keyboardInput;
-    // std::cout << "Player" << turn << " enter 'r' to roll dice: ";
+    std::cout << "\nPlayer" << turn << " enter 'r' to roll dice: ";
 
-    // if(!IsKeyPressed(KeyboardKey::KEY_R)) {
-    //     std::cout << std::endl << "Wrong Input" << std::endl;
-    //     return;
-    // }
+    if(!IsKeyPressed(KeyboardKey::KEY_R)) {
+        std::cout << std::endl << "Wrong Input" << std::endl;
+        return;
+    }
 
-    if(isNextTurn)
+    if (isNextTurn)
     {
         dice = GetRandomValue(1, 6);
-        std::cout << "Player" << turn << " Rolled a " << dice;
+        std::cout << "\nPlayer" << turn << " Rolled a " << dice;
     }
 }
 
@@ -69,7 +68,17 @@ void Board::handleInput()
     handleClick();
 }
 
-void Board::update() {autoRollDice();}
+void Board::update()
+{
+    for (auto &pawn : pawns.allPawns)
+    {
+        if (pawn.isValidOnTurn(turn))
+            pawn.isMoveable = true;
+        else
+            pawn.isMoveable = false;
+    }
+    rollDiceSmart();
+}
 
 void Board::render()
 {

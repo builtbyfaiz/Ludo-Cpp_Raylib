@@ -16,6 +16,7 @@ class Pawn
     
     public:
     bool isMoveable = false;
+    bool isSpawned = false;
     
 
     LudoCell *currentCell = nullptr;
