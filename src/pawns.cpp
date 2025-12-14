@@ -26,10 +26,13 @@ void Pawns::init()
     }
 }
 
-void Pawns::move(Pawn &pawn, int amount)
+void Pawns::move(Pawn &pawn, int dice)
 {
+    int newPathID = pawn.currentCell->getPathID() + dice;
+    if (newPathID > 52)
+        newPathID -= 52;
 
-    int newPathID = pawn.currentCell->getPathID() + amount;
+
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 15; j++)
@@ -37,6 +40,7 @@ void Pawns::move(Pawn &pawn, int amount)
             if (cells->cellsGrid[i][j].getPathID() == newPathID)
             {
                 pawn.moveTo(&cells->cellsGrid[i][j]);
+                pawn.score+= dice;
                 return;
             }
         }

@@ -8,17 +8,19 @@ class Pawn
 {
   private:
     int ID;
-    int score = 0;
     
     float size = 30;
     raylib::Color color;
     raylib::Rectangle rect = {10, 10, size, size}; // Default
     
     public:
+    int score = 0;
+    
     bool isMoveable = false;
     bool isSpawned = false;
+    bool isKillable = false;
     
-
+    
     LudoCell *currentCell = nullptr;
     LudoCell *homeCell = nullptr;
     LudoCell *spawnCell = nullptr;

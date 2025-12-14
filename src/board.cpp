@@ -21,7 +21,8 @@ void Board::handleClick()
                 std::cout << "Pawn Moved" << "\n";
             }
 
-            if (!dice == 6) {
+            if (dice != 6)
+            {
                 turn++;
                 turn = (turn % 4);
             }
@@ -37,7 +38,8 @@ void Board::rollDiceSmart()
     // char keyboardInput;
     std::cout << "\nPlayer" << turn << " enter 'r' to roll dice: ";
 
-    if(!IsKeyPressed(KeyboardKey::KEY_R)) {
+    if (!IsKeyPressed(KeyboardKey::KEY_R))
+    {
         std::cout << std::endl << "Wrong Input" << std::endl;
         return;
     }
@@ -73,11 +75,24 @@ void Board::update()
     for (auto &pawn : pawns.allPawns)
     {
         if (pawn.isValidOnTurn(turn))
+        {
             pawn.isMoveable = true;
-        else
+            pawn.isKillable = false;
+        }
+        else{
             pawn.isMoveable = false;
+            pawn.isKillable = true;
+        }
     }
-    rollDiceSmart();
+    // rollDiceSmart();
+
+    for (auto &row : cells.cellsGrid) // Check Kills
+    {
+        for (auto &cell : row)
+        {
+
+        }
+    }
 }
 
 void Board::render()

@@ -1,6 +1,7 @@
 #include "pawn.hpp"
 #include "ludoCell.hpp"
 #include "mappingsPawns.hpp"
+#include <iostream>
 
 Pawn::Pawn(LudoCell *hC)
     : homeCell(hC), color(colorLegendPawns[hC->getHomeID()]),
@@ -32,17 +33,18 @@ bool Pawn::isValidOnTurn(int turn)
 }
 
 // pawn.cpp
-void Pawn::moveTo(LudoCell *nextCell)
+void Pawn::moveTo(LudoCell *cell)
 {
-    if (isMoveable && currentCell != nullptr)
-        score += nextCell->getPathID() - currentCell->getPathID();
-
-    currentCell = nextCell;
+    std::cout << "\nPawn PositionX Rn"<< rect.GetPosition().x;
+    std::cout << "\nPawn PositionY Rn"<< rect.GetPosition().y;
+    currentCell = cell;
     Vector2 newPos = currentCell->getRect().GetPosition() +
                      ((currentCell->getRect().GetSize() - rect.GetSize()) /
                       2); // Gets Pos right in mid of cell
 
     rect.SetPosition(newPos); // sets pawns rect to middle of cells rect
+    std::cout << "\nPawn New PositionX Rn"<< rect.GetPosition().x;
+    std::cout << "\nPawn New PositionY Rn"<< rect.GetPosition().y;
 }
 
 void Pawn::spawn()
