@@ -12,13 +12,13 @@ class Board
     Pawns pawns;
     bool  isNextTurn = false;
     int   turn       = 1;
-    int   dice       = 0;
+    int   dice       = 6;
 
 
   public:
      Board() : pawns(&cells) {}
     void handleClick();
-    void rollDice();
+    void autoRollDice();
     
     void init();
     void handleInput();

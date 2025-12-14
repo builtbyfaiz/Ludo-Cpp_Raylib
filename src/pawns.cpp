@@ -15,26 +15,26 @@ void Pawns::init()
         {
             if (cell.getHomeID() > 0)
             {
-                Pawn newPawn(&cell); // Assign Home Cell
-                // newPawn.spawnCell =
-                //     &cells->cellsGrid[colorSpawnMap(newPawn.getColor()).y]
-                //                      [colorSpawnMap(newPawn.getColor()).x];
-                allPawns.push_back(newPawn);
+                allPawns.emplace_back(&cell); 
+                Pawn &pawn = allPawns.back(); 
+
+                allPawns.back().spawnCell =
+                    &cells->cellsGrid[colorSpawnMap(pawn.getColor()).y]
+                                     [colorSpawnMap(pawn.getColor()).x];
             }
         }
     }
 }
 
-
 void Pawns::move(Pawn &pawn, int amount)
 {
-    
+
     int newPathID = pawn.currentCell->getPathID() + amount;
-    for (int i=0;i<15;i++)
+    for (int i = 0; i < 15; i++)
     {
-        for (int j=0;j<15;j++)
+        for (int j = 0; j < 15; j++)
         {
-            if(cells->cellsGrid[i][j].getPathID()==newPathID) 
+            if (cells->cellsGrid[i][j].getPathID() == newPathID)
             {
                 pawn.moveTo(&cells->cellsGrid[i][j]);
                 return;
@@ -54,7 +54,4 @@ void Pawns::render()
     }
 }
 
-void Pawns::handleInput() 
-{
-
-}
+void Pawns::handleInput() {}

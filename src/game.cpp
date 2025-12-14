@@ -9,15 +9,16 @@ void Game::run()
         update();
         render();
     }
-    CloseWindow(); // leaving this here till i figure how destructor of this works
+    CloseWindow();
 }
 
+// Game has Dice as well as the Board and Players #TODO add Dice, players
 void Game::handleInput()
 {
     board.handleInput();
 }
 
-void Game::update() {}
+void Game::update() {board.update();}
 
 void Game::render()
 {
@@ -30,7 +31,7 @@ void Game::render()
 }
 
 Game::Game() {
-    SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
+    SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(750, 750, "Ludo");
     board.init();
 }

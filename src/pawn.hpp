@@ -15,7 +15,7 @@ class Pawn
     raylib::Rectangle rect = {10, 10, size, size}; // Default
     
     public:
-    bool isMoveable = true;
+    bool isMoveable = false;
     
 
     LudoCell *currentCell = nullptr;

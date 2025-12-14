@@ -3,25 +3,37 @@
 
 void Board::handleClick()
 {
-    bool nextTurn = false;
-    for (auto &&pawn : pawns.allPawns)
+    for (auto &pawn : pawns.allPawns)
     {
+        // std::cout<<pawn.getColor().ToString()<<"\n";
+        // std::cout<<pawn.getState()<<"\n";
+        // std::cout<<pawn.getScore()<<"\n";
+        // std::cout<<pawn.getRect().x<<"\n";
+
         if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
             continue;
 
+        std::cout<<"Collision with: "<<pawn.getRect().x;
         if (pawn.isValidOnTurn(turn))
         {
-            if (!pawn.isMoveable && dice == 6)
-                pawn.spawn();
+            std::cout<<"Pawn valid" <<pawn.getRect().x;
+            std::cout<<"Pawn moveable" <<pawn.getState();
 
+            if (!pawn.isMoveable && dice == 6) {
+                pawn.spawn();
+                // std::cout<<"spawn cell:" <<pawn.spawnCell->getRect().x;}
+            }
             else if (pawn.isMoveable)
                 pawns.move(pawn, dice);
+
+            turn++;
+            std::cout<<"turn";
         }
     }
-    turn++;
+    
 }
 
-void Board::rollDice()
+void Board::autoRollDice()
 {
     // char keyboardInput;
     // std::cout << "Player" << turn << " enter 'r' to roll dice: ";
@@ -31,8 +43,7 @@ void Board::rollDice()
     //     return;
     // }
 
-    // Automatic Dice for Now
-    if (isNextTurn)
+    if(isNextTurn)
     {
         dice = GetRandomValue(1, 6);
         std::cout << "Player" << turn << " Rolled a " << dice;
@@ -47,7 +58,7 @@ void Board::init()
 
 void Board::handleInput()
 {
-    // Roll Dice
+    // Roll Dice on click
     // Click Pawn (if Pawn == Own Color)
     // Move Accordingly
     // Roll Dice Again
@@ -56,10 +67,9 @@ void Board::handleInput()
         return;
 
     handleClick();
-    rollDice();
 }
 
-void Board::update() {}
+void Board::update() {autoRollDice();}
 
 void Board::render()
 {
