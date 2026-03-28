@@ -1,25 +1,48 @@
-# Ludo by Faiz
-A ludo game made via raylib quickstart in C++
-## Supported Platforms
-Quickstart/This game supports the main 3 desktop platforms:
-* Windows
-* Linux
-* MacOS
-  
-# VSCode Users (all platforms)
-*Note* You must have a compiler toolchain installed in addition to vscode.
+# Ludo-Cpp-Raylib
 
-* Download this
-* Open the folder in VSCode
-* Run the build task ( CTRL+SHIFT+B or F5 )
-* The game is in bin/debug/, Enjoy
-# Output files
-The built code will be in the bin dir
+A work-in-progress Ludo board game.
+Built with C++ and Raylib 5.5
+## Status
+In development, not feature complete.
 
-## Notes:
-Make sure to check the official raylib quickstart documentation and github for more information on how to build this game...
+## Controls
+| Input | Action |
+|-------|--------|
+| Mouse | Select and move pieces |
 
-# License
-Code is for review purpose only, No forking allowed (atleast yet)
+## Building
 
-  3. This notice may not be removed or altered from any source distribution.
+### Prerequisites
+- MinGW-W64 or Visual Studio 2022
+- Git
+
+### Windows (MinGW)
+```
+build-MinGW-W64.bat
+make
+```
+
+### Windows (Visual Studio)
+```
+build-VisualStudio2022.bat
+```
+Then open the generated `.sln` file.
+
+### Linux
+```
+cd build
+./premake5 gmake
+cd ..
+make
+```
+
+### MacOS
+```
+cd build
+./premake5.osx gmake
+cd ..
+make
+```
+
+## Output
+Built binary will be in `bin/`.
