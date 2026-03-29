@@ -23,20 +23,20 @@ void LudoCell::render()
 
 // Setter Methods
 void LudoCell::setColor (raylib::Color  c) { color     =   c; }  
-void LudoCell::setGridID   (const int gID) { gridID    = gID; }
-void LudoCell::setPathID   (const int pID) { pathID    = pID; }
-void LudoCell::setHomeID   (const int hID) { homeID    = hID; }
-void LudoCell::setSpecialID(const int sID) { specialID = sID; }
+void LudoCell::setGridID   (const int gID) { gridID_    = gID; }
+void LudoCell::setPathID   (const int pID) { pathID_    = pID; }
+void LudoCell::setHomeID   (const int hID) { homeID_    = hID; }
+void LudoCell::setSpecialID(const int sID) { specialID_ = sID; }
 void LudoCell::setOutlineThickness(float thickness)
 {
     outlineThickness = thickness;
 }
 
 
-int LudoCell::getGridID()    { return gridID;    }
-int LudoCell::getPathID()    { return pathID;    }
-int LudoCell::getHomeID()    { return homeID;    }
-int LudoCell::getSpecialID() { return specialID; }
+int LudoCell::getGridID()    { return gridID_;    }
+int LudoCell::getPathID()    { return pathID_;    }
+int LudoCell::getHomeID()    { return homeID_;    }
+int LudoCell::getSpecialID() { return specialID_; }
 
 raylib::Color LudoCell::getColor()    { return color; }
 raylib::Rectangle LudoCell::getRect() { return rect;  }

@@ -1,20 +1,19 @@
-#include <vector>
 #include "pawn.hpp"
+#include <vector>
 
 class LudoCells;
 
-class Pawns 
+class Pawns
 {
-    private:
-    
-    public:
+  public:
+    LudoCells *cells_;
     std::vector<Pawn> allPawns;
-    LudoCells *cells;
-    Pawns(LudoCells* cells) : cells(cells) {}
-
+    
     void init();
     void move(Pawn &pawn, int amount);
-
-    void render();
+    
     void handleInput();
+    void render();
+    
+    Pawns(LudoCells *cells) : cells_(cells) {}
 };

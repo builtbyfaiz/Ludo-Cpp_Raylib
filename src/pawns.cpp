@@ -9,7 +9,7 @@ void Pawns::init()
     raylib::Color color;
     // std::cout<<"Reportin Duty debug";
     // std::cout<<static_cast<std::string>(cells->cellsGrid[2][3].getColor());
-    for (auto &row : cells->cellsGrid)
+    for (auto &row : cells_->cellsGrid)
     {
         for (auto &cell : row)
         {
@@ -19,7 +19,7 @@ void Pawns::init()
                 Pawn &pawn = allPawns.back(); 
 
                 allPawns.back().spawnCell =
-                    &cells->cellsGrid[colorSpawnMap(pawn.getColor()).y]
+                    &cells_->cellsGrid[colorSpawnMap(pawn.getColor()).y]
                                      [colorSpawnMap(pawn.getColor()).x];
             }
         }
@@ -37,9 +37,9 @@ void Pawns::move(Pawn &pawn, int dice)
     {
         for (int j = 0; j < 15; j++)
         {
-            if (cells->cellsGrid[i][j].getPathID() == newPathID)
+            if (cells_->cellsGrid[i][j].getPathID() == newPathID)
             {
-                pawn.moveTo(&cells->cellsGrid[i][j]);
+                pawn.moveTo(&cells_->cellsGrid[i][j]);
                 pawn.score+= dice;
                 return;
             }

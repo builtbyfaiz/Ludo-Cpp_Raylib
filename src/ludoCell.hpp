@@ -8,10 +8,10 @@ class LudoCell
 {
   private: 
     raylib::Color color;
-    int              gridID,
-                     pathID,
-                     homeID,
-                  specialID;
+    int              gridID_,
+                     pathID_,
+                     homeID_,
+                  specialID_;
     float         outlineThickness = 0;
     raylib::Color outlineColor     = LUDOGRAY;
     raylib::Rectangle rect;
@@ -27,7 +27,7 @@ class LudoCell
              int           pathID    = 0,
              int           homeID    = 0,
              int           specialID = 0)
-              : rect(r), color(c), type(t), gridID(gridID), pathID(pathID), homeID(homeID), specialID(specialID) {} // clang-format on
+              : rect(r), color(c), type(t), gridID_(gridID), pathID_(pathID), homeID_(homeID), specialID_(specialID) {} // clang-format on
 
     void render();
 
