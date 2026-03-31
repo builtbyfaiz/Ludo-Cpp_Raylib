@@ -10,8 +10,7 @@ class Game {
     // player4;
     Game();
     ~Game();
-
-    void run();
+    
     void handleInput();
     void update();
     void render();

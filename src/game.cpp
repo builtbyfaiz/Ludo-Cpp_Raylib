@@ -1,17 +1,5 @@
 #include "game.hpp"
 
-// Game loop
-void Game::run()
-{
-    while (!WindowShouldClose()) // Run the loop untill the user quits
-    {
-        handleInput();
-        update();
-        render();
-    }
-    CloseWindow();
-}
-
 // Game has Dice as well as the Board and Players #TODO add Dice, players
 void Game::handleInput()
 {
