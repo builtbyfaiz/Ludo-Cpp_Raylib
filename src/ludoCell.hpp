@@ -11,13 +11,13 @@ class LudoCell
     int              gridID_,
                      pathID_,
                      homeID_,
-                  specialID_;
+                  winPathID;
     float         outlineThickness = 0;
     raylib::Color outlineColor     = LUDOGRAY;
     raylib::Rectangle rect;
     
     public:
-    const enum Type {PATH_CELL, HOME_CELL, OTHER} type;
+    const enum Type {PATH_CELL, HOME_CELL, SPECIAL_PATH_CELL, OTHER} type;
     
     LudoCell():type(OTHER){}
     LudoCell(raylib::Rectangle  r    = {0, 0, 0, 0} ,
@@ -27,7 +27,7 @@ class LudoCell
              int           pathID    = 0,
              int           homeID    = 0,
              int           specialID = 0)
-              : rect(r), color(c), type(t), gridID_(gridID), pathID_(pathID), homeID_(homeID), specialID_(specialID) {} // clang-format on
+              : rect(r), color(c), type(t), gridID_(gridID), pathID_(pathID), homeID_(homeID), winPathID(specialID) {} // clang-format on
 
     void render();
 

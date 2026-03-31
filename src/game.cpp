@@ -1,15 +1,14 @@
 #include "game.hpp"
 
 // Game has Dice as well as the Board and Players #TODO add Dice, players
-void Game::handleInput() { board.handleInput(); }
-
-void Game::update() { board.update(); }
+void Game::handleInput() {}
+void Game::update() {}
 
 void Game::render()
 {
     BeginDrawing();
     ClearBackground(raylib::BLACK);
-
+    
     board.render();
 
     EndDrawing();

@@ -18,20 +18,6 @@ void Pawn::render()
     rect.DrawLines(BLACK, 2);
 }
 
-// Matches Color to turn in a clockwise 1-4 fashion, Returns true if pawn is turn's color
-bool Pawn::isValidOnTurn(int turn)
-{
-    switch (turn) // clang-format off
-    {
-    case 1: if (color == LUDO_RED   ) return true; else return false;
-    case 2: if (color == LUDO_GREEN ) return true; else return false;
-    case 3: if (color == LUDO_YELLOW) return true; else return false;
-    case 4: if (color == LUDO_BLUE  ) return true; else return false;
-    
-    default: return false;
-    } // clang-format on
-}
-
 // pawn.cpp
 void Pawn::moveTo(LudoCell *cell)
 {

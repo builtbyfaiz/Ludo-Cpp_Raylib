@@ -15,25 +15,22 @@ class Pawn
     raylib::Color color;
 
   public:
-    int score = 0;
+    int score = 0; // Equivalent to total cells travelled, used for checking win condition.
 
     // Pawn State
-    bool isMoveable = false;
-    bool isSpawned = false;
+    bool isSpawned  = false;
+    bool isMoveable = false; 
     bool isKillable = false;
 
     // Pawn's Cell information
     LudoCell *currentCell = nullptr;
-    LudoCell *homeCell = nullptr;
-    LudoCell *spawnCell = nullptr;
+    LudoCell *homeCell    = nullptr;
+    LudoCell *spawnCell   = nullptr;
 
     Pawn(LudoCell *hC);
 
     void update();
     void render();
-
-    bool isValidOnTurn(int turn);
-
     void moveTo(LudoCell *nextCell);
     void spawn();
     void die();
