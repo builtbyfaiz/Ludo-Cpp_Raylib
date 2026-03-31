@@ -21,16 +21,16 @@ void Pawn::render()
 // pawn.cpp
 void Pawn::moveTo(LudoCell *cell)
 {
-    std::cout << "\nPawn PositionX Rn"<< rect.GetPosition().x;
-    std::cout << "\nPawn PositionY Rn"<< rect.GetPosition().y;
+    std::cout << "\nPawn's PositionX: "<< rect.GetPosition().x;
+    std::cout << "\nPawn's PositionY: "<< rect.GetPosition().y;
     currentCell = cell;
     Vector2 newPos = currentCell->getRect().GetPosition() +
                      ((currentCell->getRect().GetSize() - rect.GetSize()) /
                       2); // Gets Pos right in mid of cell
 
     rect.SetPosition(newPos); // sets pawns rect to middle of cells rect
-    std::cout << "\nPawn New PositionX Rn"<< rect.GetPosition().x;
-    std::cout << "\nPawn New PositionY Rn"<< rect.GetPosition().y;
+    std::cout << "\nPawn's New PositionX: "<< rect.GetPosition().x;
+    std::cout << "\nPawn's New PositionY: "<< rect.GetPosition().y <<"\n";
 }
 
 void Pawn::spawn()

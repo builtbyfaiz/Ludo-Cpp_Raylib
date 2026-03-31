@@ -79,8 +79,8 @@ inline int homeIDMap[15][15] = {{0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0
 // Special cell ID mapping for the Ludo board.
 // Each string represents a row; numeric characters indicate special cells leading to the center/win.
 
-// int speacialIDMap[15][15] #TODO convert this map to string
-inline std::string specialIDMap[15] = 
+// int specialIDMap[15][15] #TODO convert this map to string
+inline std::string winPathIDMap[15] = 
 {
     "000000000000000", // Row01
     "000000010000000", // Row 2

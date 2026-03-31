@@ -27,19 +27,22 @@ void LudoCells::init()
     
     for (size_t y = 0; y < 15; y++)
     {
-        std::vector<LudoCell> cellsRow;
+        std::vector<LudoCell> cellsRow; 
         for (size_t x = 0; x < 15; x++)
         {
+            // Create 15 By 15 Block grid.
             float             width  = GetScreenWidth()  / 15;
             float             height = GetScreenHeight() / 15;
-            raylib::Color     color  = colorLegend[colorMap[y][x]]; 
+            
+            raylib::Color     color  = colorLegend[colorMap[y][x]];  
             raylib::Rectangle rect   = {x * width, y * height, width, height};
 
             int gridID    = y * 15 + x + 1 ;          // 1 --> 255
             int pathID    = pathIDMap[y][x];          // 1-59 I think
             int homeID    = homeIDMap[y][x];          // 1-4
-            int specialID = specialIDMap[y][x] - '0'; // Ascii to Int
+            int winPathID = winPathIDMap[y][x] - '0'; // Ascii to Int, will turn it into direct func soon
             
+
             LudoCell::Type type =
                 pathID > 0 ? LudoCell::PATH_CELL : LudoCell::OTHER;
             
@@ -49,11 +52,11 @@ void LudoCells::init()
                 color,                       // Color from legend
                 type,                        // Path, Home, Other etc.
                 gridID,                      // Grid ID... All Cells Numerized
-                pathID,                      // Special cell ID, (1-6 win path)
-                homeID,
-                specialID                    // Path Id of Direct path that all pawns move on
+                pathID,                      // Path Id of Direct path that all pawns move on
+                homeID,                      // Base Cells Id
+                winPathID                    // Special cell ID, (1-6 win path)
             );
-            if (cell.getSpecialID() > 0 || cell.getPathID() > 0)
+            if (cell.getWinPathID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);
 
             cellsRow.push_back(cell);
