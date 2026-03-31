@@ -18,7 +18,7 @@ void Board::handleClick()
             else if (pawn.isSpawned && pawn.isMoveable)
             {
                 pawns.move(pawn, dice);
-                std::cout << "Pawn Moved" << "\n";
+                std::cout << " Pawn Moved " << "\n";
             }
 
             if (dice != 6)
@@ -79,18 +79,18 @@ void Board::update()
             pawn.isMoveable = true;
             pawn.isKillable = false;
         }
-        else{
+        else
+        {
             pawn.isMoveable = false;
             pawn.isKillable = true;
         }
     }
-    // rollDiceSmart();
+    rollDiceSmart();
 
     for (auto &row : cells.cellsGrid) // Check Kills
     {
         for (auto &cell : row)
         {
-
         }
     }
 }

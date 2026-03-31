@@ -64,3 +64,5 @@ const raylib::Rectangle Pawn::getRect() { return rect; }
 const raylib::Color Pawn::getColor() { return color; }
 
 const bool Pawn::getState() { return isMoveable; }
+
+const int Pawn::getScore() { return score; }

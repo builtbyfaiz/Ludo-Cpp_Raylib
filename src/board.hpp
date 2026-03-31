@@ -1,7 +1,7 @@
 #pragma once
 #include "ludoCells.hpp"
 #include "pawns.hpp"
-// clang-format on
+
 class Board
 {
   private:
