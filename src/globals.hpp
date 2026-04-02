@@ -1,9 +1,5 @@
 #pragma once
-#include <iostream>
 #include "raylib-cpp.hpp"
-
-// clang-format off
-
 
 //Color-Pallete defined as RGBA values
 const raylib::Color LUDO_RED    = {236, 28 , 34 , 255};
