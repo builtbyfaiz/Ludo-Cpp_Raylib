@@ -1,7 +1,6 @@
 #pragma once
 #include "globals.hpp"
 #include "pawn.hpp"
-#include "raylib-cpp.hpp"
 
 // clang-format off
 class LudoCell

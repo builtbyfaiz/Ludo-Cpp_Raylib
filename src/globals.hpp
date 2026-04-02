@@ -1,18 +1,9 @@
 #pragma once
+#include <iostream>
 #include "raylib-cpp.hpp"
 
 // clang-format off
-// This type is depracated
-enum Type
-{
-    NONE,
-    SAFE,
-    BASE_WALL,
-    BASE_SPAWN,
-    BASE_SPECIAL,
-    PAWN_HOME,
-    PAWN_PATH
-};
+
 
 //Color-Pallete defined as RGBA values
 const raylib::Color LUDO_RED    = {236, 28 , 34 , 255};
