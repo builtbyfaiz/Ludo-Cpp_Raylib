@@ -1,3 +1,20 @@
+# Core style
 IndentWidth: 4
 BreakBeforeBraces: Allman
+ColumnLimit: 100
 ReflowComments: false
+
+# Parameters
+BinPackParameters: false
+AlignAfterOpenBracket: Align
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Spacing
+SpaceInEmptyBlock: false
+
+# Includes
+SortIncludes: true
+IncludeBlocks: Regroup
+
+# C++
+Standard: c++17
