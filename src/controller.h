@@ -1,7 +1,6 @@
 #include "board.hpp"
 #include "ludoLogic.h"
 
-
 class BoardController
 {
   private:

@@ -1,8 +1,6 @@
 #include "pawns.hpp"
 #include "ludoCells.hpp"
 #include "mappingsPawns.hpp"
-#include <iostream>
-#include <string>
 
 void Pawns::init()
 {

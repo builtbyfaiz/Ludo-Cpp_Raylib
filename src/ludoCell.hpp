@@ -1,6 +1,5 @@
 #pragma once
 #include "globals.hpp"
-#include "pawn.hpp"
 
 // clang-format off
 class LudoCell

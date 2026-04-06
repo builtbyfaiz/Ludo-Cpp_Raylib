@@ -1,7 +1,6 @@
 #include "board.hpp"
 #include "ludoLogic.h"
 #include "controller.h"
-#include <iostream>
 
 void Board::init()
 {

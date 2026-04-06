@@ -1,9 +1,9 @@
 #include "ludoCells.hpp"
-#include "globals.hpp"
+
 #include "ludoCell.hpp"
 #include "mappingsCells.hpp"
-#include "raylib-cpp.hpp"
-#include <iostream>
+#include "raylib-cpp.hpp" // IWYU pragma: keep
+
 #include <map>
 #include <string>
 
@@ -31,8 +31,8 @@ void LudoCells::init()
         for (size_t x = 0; x < 15; x++)
         {
             // Create 15 By 15 Block grid.
-            float             width  = GetScreenWidth()  / 15;
-            float             height = GetScreenHeight() / 15;
+            float             width  = GetScreenWidth()  / 15.0;
+            float             height = GetScreenHeight() / 15.0;
             
             raylib::Color     color  = colorLegend[colorMap[y][x]];  
             raylib::Rectangle rect   = {x * width, y * height, width, height};
@@ -48,13 +48,13 @@ void LudoCells::init()
             
             // std::cout << width << height;
             LudoCell cell(
-                rect,                        // Rectangle [X, Y, Size]
-                color,                       // Color from legend
-                type,                        // Path, Home, Other etc.
-                gridID,                      // Grid ID... All Cells Numerized
-                pathID,                      // Path Id of Direct path that all pawns move on
-                homeID,                      // Base Cells Id
-                winPathID                    // Special cell ID, (1-6 win path)
+                rect  ,           // Rectangle [X, Y, Size]
+                color ,           // Color from legend
+                type  ,           // Path, Home, Other etc.
+                gridID,           // Grid ID... All Cells Numerized
+                pathID,           // Path Id of Direct path that all pawns move on
+                homeID,           // Base Cells Id
+                       winPathID  // Special cell ID, (1-6 win path)
             );
             if (cell.getWinPathID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);

@@ -1,7 +1,5 @@
 #pragma once
-#include "globals.hpp"
 #include "ludoCell.hpp"
-#include "raylib-cpp.hpp"
 #include <vector>
 
 class LudoCells

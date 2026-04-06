@@ -1,6 +1,6 @@
 #pragma once
 #include "ludoCell.hpp"
-#include "raylib-cpp.hpp"
+#include "raylib-cpp.hpp" // IWYU pragma: keep
 
 class LudoCell; //Forward-Declaration
 

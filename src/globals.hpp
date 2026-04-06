@@ -1,5 +1,5 @@
 #pragma once
-#include "raylib-cpp.hpp"
+#include "raylib-cpp.hpp" // IWYU pragma: keep
 
 //Color-Pallete defined as RGBA values
 const raylib::Color LUDO_RED    = {236, 28 , 34 , 255};
