@@ -3,8 +3,9 @@
 #include "mappingsPawns.hpp"
 #include <iostream>
 
+//Pawn will always be initiated to a home Cell, Color is inferred from Cell.
 Pawn::Pawn(LudoCell *hC)
-    : homeCell(hC), color(colorLegendPawns[hC->getHomeID()]),
+    : homeCell(hC), color(colorLegendPawns[hC->getHomeID()]), 
       ID(hC->getHomeID())
 {
     moveTo(homeCell);

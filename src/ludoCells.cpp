@@ -37,27 +37,29 @@ void LudoCells::init()
             raylib::Color     color  = colorLegend[colorMap[y][x]];  
             raylib::Rectangle rect   = {x * width, y * height, width, height};
 
-            int gridID    = y * 15 + x + 1 ;          // 1 --> 255
-            int pathID    = pathIDMap[y][x];          // 1-59 I think
-            int homeID    = homeIDMap[y][x];          // 1-4
+            int gridID    = y * 15 + x + 1 ;          // 1 - 255
+            int pathID    = pathIDMap[y][x];          // 1 - 52 
+            int homeID    = homeIDMap[y][x];          // 1 - 16
             int winPathID = winPathIDMap[y][x] - '0'; // Ascii to Int, will turn it into direct func soon
-            
 
             LudoCell::Type type =
                 pathID > 0 ? LudoCell::PATH_CELL : LudoCell::OTHER;
             
             // std::cout << width << height;
             LudoCell cell(
-                rect  ,           // Rectangle [X, Y, Size]
-                color ,           // Color from legend
-                type  ,           // Path, Home, Other etc.
-                gridID,           // Grid ID... All Cells Numerized
-                pathID,           // Path Id of Direct path that all pawns move on
-                homeID,           // Base Cells Id
-                       winPathID  // Special cell ID, (1-6 win path)
+                rect  ,    // Rectangle [X, Y, Size]
+                color ,    // Color from legend
+                type  ,    // Path, Home, Other etc.
+                gridID,    // Grid ID... All Cells Numerized
+                pathID,    // Path Id of Direct path that all pawns move on
+                homeID,    // Base Cells Id
+                winPathID  // Special cell ID, (1-6 win path)
             );
+
             if (cell.getWinPathID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);
+                
+            // if(cell.getPathID()!=0) pathCells.push_back(cell);
 
             cellsRow.push_back(cell);
         }

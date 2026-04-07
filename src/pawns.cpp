@@ -1,25 +1,22 @@
 #include "pawns.hpp"
+
 #include "ludoCells.hpp"
 #include "mappingsPawns.hpp"
 
 void Pawns::init()
 {
-    raylib::Color color;
-    // std::cout<<"Reportin Duty debug";
-    // std::cout<<static_cast<std::string>(cells->cellsGrid[2][3].getColor());
     for (auto &row : cells_->cellsGrid)
     {
         for (auto &cell : row)
         {
-            if (cell.getHomeID() > 0)
-            {
-                allPawns.emplace_back(&cell); 
-                Pawn &pawn = allPawns.back(); 
+            if (cell.getHomeID() <= 0) // If iD doesn't exist i.e = 0 skip iteration.
+                continue;
 
-                allPawns.back().spawnCell =
-                    &cells_->cellsGrid[colorSpawnMap(pawn.getColor()).y]
-                                     [colorSpawnMap(pawn.getColor()).x];
-            }
+            allPawns.emplace_back(&cell); // Generate new pawn
+            Pawn &pawn = allPawns.back(); // Set a reference to the new pawn
+
+            allPawns.back().spawnCell = &cells_->cellsGrid[colorSpawnMap(pawn.getColor()).y]
+                                                          [colorSpawnMap(pawn.getColor()).x];
         }
     }
 }
@@ -30,7 +27,6 @@ void Pawns::move(Pawn &pawn, int dice)
     if (newPathID > 52)
         newPathID -= 52;
 
-
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 15; j++)
@@ -38,7 +34,7 @@ void Pawns::move(Pawn &pawn, int dice)
             if (cells_->cellsGrid[i][j].getPathID() == newPathID)
             {
                 pawn.moveTo(&cells_->cellsGrid[i][j]);
-                pawn.score+= dice;
+                pawn.score += dice;
                 return;
             }
         }
@@ -49,9 +45,6 @@ void Pawns::render()
 {
     for (auto &pawn : allPawns)
     {
-        // std::cout<<pawn.getRect().x;
-        // std::cout<<pawn.getRect().y;
-        // std::cout<<pawn.getRect().width;
         pawn.render();
     }
 }
