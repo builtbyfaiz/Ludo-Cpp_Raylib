@@ -12,9 +12,7 @@ void Cells::render()
 {
     for (auto &row : grid)
         for (auto &cell : row)
-        {
             cell.render();
-        }
 }
 
 // clang-format off
@@ -31,16 +29,16 @@ void Cells::init()
         for (size_t x = 0; x < 15; x++)
         {
             // Create 15 By 15 Block grid.
-            float             width  = GetScreenWidth()  / 15.0;
-            float             height = GetScreenHeight() / 15.0;
+            float width  = GetScreenWidth()  / 15.0;
+            float height = GetScreenHeight() / 15.0;
             
-            raylib::Color     color  = CharacterToColor[boardColorLayout[y][x]];  
+            raylib::Color     color  = boardColorGrid(y, x);
             raylib::Rectangle rect   = {x * width, y * height, width, height};
 
-            int gridID    = y * 15 + x + 1 ;          // 1 - 255
-            int pathID    = pathIDMap[y][x];          // 1 - 52 
-            int homeID    = homeIDMap[y][x];          // 1 - 16
-            int winPathID = winPathIDMap[y][x] - '0'; // Ascii to Int, will turn it into direct func soon
+            int gridID    = y * 15 + x + 1 ;           // 1 - 255
+            int pathID    = pathIDGrid[y][x];          // 1 - 52 
+            int homeID    = homeIDGrid[y][x];          // 1 - 16
+            int winPathID = winPathIDGrid[y][x] - '0'; // Ascii to Int, #TODO will turn it into direct func soon
 
             Cell::Type type =
                 pathID > 0 ? Cell::PATH_CELL : Cell::OTHER;

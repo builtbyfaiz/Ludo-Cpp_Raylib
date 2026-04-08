@@ -5,45 +5,54 @@
 #include <map>
 #include <string>
 
-
 // clang-format off
-// Grid color mapping for the Ludo board.
-// Each string represents a row; characters correspond to color codes defined in CharacterToColor.
-inline std::string boardColorLayout[15] = {
 
-    "RRRRRR   GGGGGG", // Row 1
-    "R    R GGG    G", // Row 2
-    "R    R G G    G", // Row 3
-    "R    R G G    G", // Row 4
-    "R    R G G    G", // Row 5
-    "RRRRRR G GGGGGG", // Row 6
-    " R    OGO      ", // Row 7
-    " RRRRRROYYYYYY ", // Row 8 (center path)
-    "      OBO    Y ", // Row 9
-    "BBBBBB B YYYYYY", // Row 10
-    "B    B B Y    Y", // Row 11
-    "B    B B Y    Y", // Row 12
-    "B    B B Y    Y", // Row 13
-    "B    BBB Y    Y", // Row 14
-    "BBBBBB   YYYYYY"  // Row 15
-};
-
-// Mapping from color code characters to Raylib Color objects.
-// Used to render the board grid with appropriate colors.
-inline std::map<char, raylib::Color> CharacterToColor = 
+// Anonomous namespace, this prevents functions being visible elsewhere
+namespace 
 {
-    {'R', LUDO_RED      }, // Top-left  
-    {'G', LUDO_GREEN    }, // Top-right 
-    {'B', LUDO_BLUE     }, // Bottom-left  
-    {'Y', LUDO_YELLOW   }, // Bottom-right
-    {'O', raylib::BLACK}, // Central void cells
-    {' ', raylib::WHITE}  // Path cells
-};
-//TODO make a function that does above lookup as one function internally.
-// Path ID mapping for the Ludo board.
-// 2D array where each cell contains a unique path ID or 0 if not part of the path.
-// Used for movement logic and win condition checks.
-inline int pathIDMap[15][15] = 
+    // Grid color mapping for the Ludo board.
+    // Each string represents a row; characters correspond to color codes defined in CharacterToColor.
+    inline std::string boardColorLayout[15] = 
+    {
+        "RRRRRR   GGGGGG", // Row 1
+        "R    R GGG    G", // Row 2
+        "R    R G G    G", // Row 3
+        "R    R G G    G", // Row 4
+        "R    R G G    G", // Row 5
+        "RRRRRR G GGGGGG", // Row 6
+        " R    OGO      ", // Row 7
+        " RRRRRROYYYYYY ", // Row 8 (center path)
+        "      OBO    Y ", // Row 9
+        "BBBBBB B YYYYYY", // Row 10
+        "B    B B Y    Y", // Row 11
+        "B    B B Y    Y", // Row 12
+        "B    B B Y    Y", // Row 13
+        "B    BBB Y    Y", // Row 14
+        "BBBBBB   YYYYYY"  // Row 15
+    };
+
+    // Mapping from color code characters to Raylib Color objects.
+    // Used to render the board grid with appropriate colors.
+    inline std::map<char, raylib::Color> CharacterToColor = 
+    {
+        {'R', LUDO_RED      }, // Top-left  
+        {'G', LUDO_GREEN    }, // Top-right 
+        {'B', LUDO_BLUE     }, // Bottom-left  
+        {'Y', LUDO_YELLOW   }, // Bottom-right
+        {'O', raylib::BLACK }, // Central void cells
+        {' ', raylib::WHITE }  // Path cells
+    };
+}
+
+//Grid color mapping for the Ludo board.
+inline raylib::Color boardColorGrid(int y, int x) {
+    return CharacterToColor[boardColorLayout[y][x]];  
+}
+
+// - Path ID mapping for the Ludo board.
+// - 2D array where each cell contains a unique path ID or 0 if not part of the path.
+// - Used for movement logic and win condition checks.
+inline int pathIDGrid[15][15] = 
 {
     { 0,  0,  0,  0,  0,  0, 24, 25, 26,  0,  0,  0,  0,  0,  0},
     { 0,  0,  0,  0,  0,  0, 23,  0, 27,  0,  0,  0,  0,  0,  0},
@@ -62,27 +71,28 @@ inline int pathIDMap[15][15] =
     { 0,  0,  0,  0,  0,  0, 52, 51, 50,  0,  0,  0,  0,  0,  0}
 };
 
-inline int homeIDMap[15][15] = {{0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  1,  2, 0, 0, 0, 0, 0, 0, 0,  5,  6, 0, 0},
-                         {0, 0,  3,  4, 0, 0, 0, 0, 0, 0, 0,  7,  8, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  9, 10, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 0},
-                         {0, 0, 11, 12, 0, 0, 0, 0, 0, 0, 0, 15, 16, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
-                         {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0}};
+inline int homeIDGrid[15][15] = 
+{ 
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  1,  2, 0, 0, 0, 0, 0, 0, 0,  5,  6, 0, 0},
+    {0, 0,  3,  4, 0, 0, 0, 0, 0, 0, 0,  7,  8, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  9, 10, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 0},
+    {0, 0, 11, 12, 0, 0, 0, 0, 0, 0, 0, 15, 16, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0},
+    {0, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0}
+};
 
 // Special cell ID mapping for the Ludo board.
 // Each string represents a row; numeric characters indicate special cells leading to the center/win.
-
-// int specialIDMap[15][15] #TODO convert this map to string
-inline std::string winPathIDMap[15] = 
+inline std::string winPathIDGrid[15] = 
 {
     "000000000000000", // Row01
     "000000010000000", // Row 2
