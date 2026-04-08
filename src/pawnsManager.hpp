@@ -3,7 +3,7 @@
 
 class LudoCells;
 
-class Pawns
+class PawnsManager
 {
   public:
     LudoCells *cells_;
@@ -15,5 +15,5 @@ class Pawns
     void handleInput();
     void render();
     
-    Pawns(LudoCells *cells) : cells_(cells) {}
+    PawnsManager(LudoCells *cells) : cells_(cells) {}
 };

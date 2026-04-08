@@ -1,6 +1,6 @@
 #pragma once
 #include "ludoCells.hpp"
-#include "pawns.hpp"
+#include "pawnsManager.hpp"
 
 class Board
 {
@@ -9,7 +9,7 @@ class Board
         cells; // #TODO Dice, Pawns.. dice.hpp, pawn.hpp, handleinput for dice,
                // handleinput for pawn, handle input for path
 
-    Pawns pawns;
+    PawnsManager pawns;
 
   public:
      Board() : pawns(&cells) {}
