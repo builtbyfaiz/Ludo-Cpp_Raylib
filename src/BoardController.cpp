@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "BoardController.h"
 
 // Constructor, Destructor
 void BoardController::init(Board *board) { this->board_ = board; }
@@ -93,7 +93,7 @@ BoardController::~BoardController() { delete board_; }
     // }
     // rollDiceSmart();
 
-    // for (auto &row : cells.cellsGrid) // Check Kills
+    // for (auto &row : cells.grid) // Check Kills
     // {
     //     for (auto &cell : row)
     //     {

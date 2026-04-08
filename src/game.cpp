@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "Game.hpp"
 
 // Game has Dice as well as the Board and Players #TODO add Dice, players
 void Game::handleInput() {}

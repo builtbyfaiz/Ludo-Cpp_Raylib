@@ -1,12 +1,12 @@
-#include "pawn.hpp"
+#include "Pawn.hpp"
 #include <vector>
 
-class LudoCells;
+class Cells;
 
 class PawnsManager
 {
   public:
-    LudoCells *cells_;
+    Cells *cells_;
     std::vector<Pawn> allPawns;
     
     void init();
@@ -15,5 +15,5 @@ class PawnsManager
     void handleInput();
     void render();
     
-    PawnsManager(LudoCells *cells) : cells_(cells) {}
+    PawnsManager(Cells *cells) : cells_(cells) {}
 };

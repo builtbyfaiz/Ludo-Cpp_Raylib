@@ -13,7 +13,7 @@ BEGIN
       VALUE "FileDescription", "A cool game made with raylib (www.raylib.com)"
       VALUE "FileVersion", "1.0.0"
       VALUE "InternalName", "ludobyfaiz"
-      VALUE "LegalCopyright", "(c) 2025 Faiz"
+      VALUE "LegalCopyright", "(c) 2026 Faiz"
       //VALUE "OriginalFilename", "raylib_app"
       VALUE "ProductName", "Ludo-Wing"
       VALUE "ProductVersion", "1.0.0"

@@ -1,11 +1,11 @@
-#include "pawnsManager.hpp"
+#include "PawnsManager.hpp"
 
-#include "ludoCells.hpp"
-#include "mappingsPawns.hpp"
+#include "Cells.hpp"
+#include "PawnMaps.hpp"
 
 void PawnsManager::init()
 {
-    for (auto &row : cells_->cellsGrid)
+    for (auto &row : cells_->grid)
     {
         for (auto &cell : row)
         {
@@ -15,8 +15,8 @@ void PawnsManager::init()
             allPawns.emplace_back(&cell); // Generate new pawn on Home-cell
             Pawn &pawn = allPawns.back(); // Set a reference to the new pawn
 
-            allPawns.back().spawnCell = &cells_->cellsGrid[colorSpawnMap(pawn.getColor()).y]
-                                                          [colorSpawnMap(pawn.getColor()).x];
+            allPawns.back().spawnCell = &cells_->grid[ColorToPawnSpawnPos(pawn.getColor()).y]
+                                                          [ColorToPawnSpawnPos(pawn.getColor()).x];
         }
     }
 }
@@ -31,9 +31,9 @@ void PawnsManager::move(Pawn &pawn, int dice)
     {
         for (int j = 0; j < 15; j++)
         {
-            if (cells_->cellsGrid[i][j].getPathID() == newPathID)
+            if (cells_->grid[i][j].getPathID() == newPathID)
             {
-                pawn.moveTo(&cells_->cellsGrid[i][j]);
+                pawn.moveTo(&cells_->grid[i][j]);
                 pawn.score += dice;
                 return;
             }

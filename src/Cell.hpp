@@ -2,7 +2,7 @@
 #include "globals.hpp"
 
 // clang-format off
-class LudoCell
+class Cell
 {
   private: 
     raylib::Color color;
@@ -16,8 +16,8 @@ class LudoCell
     public:
     const enum Type {PATH_CELL, HOME_CELL, SPECIAL_PATH_CELL, OTHER} type;
     
-    // LudoCell():type(OTHER){}
-    LudoCell(raylib::Rectangle  r    = {0, 0, 0, 0} ,
+    // Cell():type(OTHER){}
+    Cell(raylib::Rectangle  r    = {0, 0, 0, 0} ,
              raylib::Color      c    = raylib::WHITE,
              Type               t    = OTHER,
              const int           gridID    = 0,

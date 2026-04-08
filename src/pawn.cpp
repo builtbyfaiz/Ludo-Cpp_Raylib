@@ -1,11 +1,11 @@
-#include "pawn.hpp"
-#include "ludoCell.hpp"
-#include "mappingsPawns.hpp"
+#include "Pawn.hpp"
+#include "Cell.hpp"
+#include "PawnMaps.hpp"
 #include <iostream>
 
-//Pawn will always be initiated to a home Cell, Color is inferred from Cell.
-Pawn::Pawn(LudoCell *hC)
-    : homeCell(hC), color(colorLegendPawns[hC->getHomeID()]), 
+// Pawn will always be initiated to a home Cell, Color is inferred from Cell.
+Pawn::Pawn(Cell *hC)
+    : homeCell(hC), color(pawnIdToColor[hC->getHomeID()]), 
       ID(hC->getHomeID())
 {
     moveTo(homeCell);
@@ -20,7 +20,7 @@ void Pawn::render()
 }
 
 // pawn.cpp
-void Pawn::moveTo(LudoCell *cell)
+void Pawn::moveTo(Cell *cell)
 {
     std::cout << "\nPawn's PositionX: "<< rect.GetPosition().x;
     std::cout << "\nPawn's PositionY: "<< rect.GetPosition().y;

@@ -1,9 +1,9 @@
-#include "ludoLogic.h"
-#include "pawn.hpp"
+#include "GameRules.hpp"
+#include "Pawn.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 
 // Matches Color to turn in a clockwise 1-4 fashion, Returns true if pawn is turn's color
-bool LudoLogic::isValidOnTurn(Pawn pawn, int turn)
+bool GameRules::isValidOnTurn(Pawn pawn, int turn)
 {
     switch (turn) // clang-format off
     {

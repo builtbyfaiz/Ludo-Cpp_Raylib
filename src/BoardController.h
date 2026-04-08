@@ -1,5 +1,5 @@
-#include "board.hpp"
-#include "ludoLogic.h"
+#include "Board.hpp"
+#include "GameRules.hpp"
 
 class BoardController
 {

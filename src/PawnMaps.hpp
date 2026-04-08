@@ -3,9 +3,8 @@
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 #include <map>
 
-
 // Home ID to Pawn Color
-inline std::map<int, raylib::Color> colorLegendPawns = {
+inline std::map<int, raylib::Color> pawnIdToColor = {
     {0, WHITE},
 
     {1, LUDO_RED}, // Top-left 1
@@ -30,18 +29,13 @@ inline std::map<int, raylib::Color> colorLegendPawns = {
 };
 
 // Returns Vector2 of 2d Array indices corresponding to the spawn cell on a 15 by 15 Grid
-inline raylib::Vector2 colorSpawnMap(const raylib::Color color)
+inline raylib::Vector2 ColorToPawnSpawnPos(const raylib::Color color)
 {
     // inline keyword is here being used to prevent multiple definitions, std::map did not work for custom datatypes
-    if     (color==LUDO_RED)    return {1, 6};
-    else if(color==LUDO_GREEN)  return {8, 1};
-    else if(color==LUDO_BLUE)   return {6, 13};
-    else if(color==LUDO_YELLOW) return {13, 8};
-    else return {0,0};
+    if(color==LUDO_RED)    return {1, 6};
+    if(color==LUDO_GREEN)  return {8, 1};
+    if(color==LUDO_BLUE)   return {6, 13};
+    if(color==LUDO_YELLOW) return {13, 8};
+    
+    return {0,0}; // Return 0,0 if nothing matches
 }
-// std::map<raylib::Color, raylib::Vector2> colorSpawnaMap= {
-//     {LUDO_RED,    {1, 6}},
-//     {LUDO_GREEN,  {6, 1}},
-//     {LUDO_BLUE,   {6,13}},
-//     {LUDO_YELLOW, {13,6}}
-// };

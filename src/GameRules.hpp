@@ -1,8 +1,8 @@
 #pragma once
-#include "pawn.hpp"
+#include "Pawn.hpp"
 
 // Stores Rules and logical utilities for the game.
-class LudoLogic
+class GameRules
 {
     bool isValidOnTurn(Pawn pawn, int turn);
 };

@@ -1,6 +1,4 @@
-#include "board.hpp"
-// #include "ludoLogic.h"
-#include "controller.h"
+#include "Board.hpp"
 
 void Board::init()
 {

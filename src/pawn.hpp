@@ -1,8 +1,8 @@
 #pragma once
-#include "ludoCell.hpp"
+#include "Cell.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 
-class LudoCell; //Forward-Declaration
+class Cell; //Forward-Declaration
 
 class Pawn
 {
@@ -23,15 +23,15 @@ class Pawn
     bool isKillable = false;
 
     // Pawn's Cell information
-    LudoCell *currentCell = nullptr;
-    LudoCell *homeCell    = nullptr;
-    LudoCell *spawnCell   = nullptr;
+    Cell *currentCell = nullptr;
+    Cell *homeCell    = nullptr;
+    Cell *spawnCell   = nullptr;
 
-    Pawn(LudoCell *hC);
+    Pawn(Cell *hC);
 
     void update();
     void render();
-    void moveTo(LudoCell *nextCell);
+    void moveTo(Cell *nextCell);
     void spawn();
     void die();
 
