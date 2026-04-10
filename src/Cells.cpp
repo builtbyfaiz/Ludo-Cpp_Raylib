@@ -4,7 +4,6 @@
 #include "CellMaps.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 
-#include <map>
 #include <string>
 
 /// @brief Draw All Cells in the 'cells' vector
