@@ -4,22 +4,27 @@
 
 class Game {
   public:
+    int turn = 1; 
+    int dice = 0;
+    bool isNextTurn = false;
+
     Board board;
+    Player* currentPlayer = nullptr;
+
     std::vector<Player> players;
     
     Game();
     ~Game();
 
     void initPlayers();
-
+    void rollDice();
+    void advanceTurn();
     void handleInput();
     void update();
     void render();
 };
 
 // bool  isNextTurn = false;
-// int   turn       = 1;
-// int   dice       = 6;
 
 // void Board::handleClick()
 // {

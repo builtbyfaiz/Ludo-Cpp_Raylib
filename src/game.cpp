@@ -1,11 +1,15 @@
 #include "Game.hpp"
 
 // Game has Dice as well as the Board and Players #TODO add Dice, players
-void Game::handleInput() 
+void Game::handleInput() {}
+void Game::update()
 {
-
+    if (isNextTurn)
+    {
+        advanceTurn();
+        rollDice();
+    }
 }
-void Game::update() {}
 
 void Game::render()
 {
@@ -51,15 +55,32 @@ void Game::initPlayers()
             std::cin >> player.name;
         }
     }
+    currentPlayer = &players[0];
 }
 
 Game::Game()
 {
     initPlayers();
 
-    SetConfigFlags(FLAG_VSYNC_HINT);
-    InitWindow(750, 750, "Ludo");
+    raylib::Window window(750, 750, "Ludo", FLAG_VSYNC_HINT);
     board.init();
 }
 
 Game::~Game() { CloseWindow(); }
+
+int consecutiveSixCount; // Count number of consecutive sixes #TODO implement further down the line.
+
+void Game::advanceTurn()
+{
+    if (dice != 6)
+    {
+        turn = (turn % 3) + 1;
+        currentPlayer = &players[turn];
+    }
+}
+
+void Game::rollDice()
+{
+    dice = GetRandomValue(1, 6);
+    std::cout << currentPlayer->name << " has Rolled a " << dice;
+}

@@ -38,6 +38,5 @@ class Pawn
     // Getter Methods
     const raylib::Rectangle getRect();
     const raylib::Color getColor();
-    const bool getState();
     const int getScore();
 };
