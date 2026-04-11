@@ -16,7 +16,7 @@ void PawnsManager::init()
             Pawn &pawn = allPawns.back(); // Set a reference to the new pawn
 
             allPawns.back().spawnCell = &cells_->grid[ColorToPawnSpawnPos(pawn.getColor()).y]
-                                                          [ColorToPawnSpawnPos(pawn.getColor()).x];
+                                                     [ColorToPawnSpawnPos(pawn.getColor()).x];
         }
     }
 }
@@ -49,4 +49,14 @@ void PawnsManager::render()
     }
 }
 
-void PawnsManager::handleInput() {}
+void PawnsManager::selectPawn(Pawn &pawn)
+{
+    for (auto &p : allPawns)
+    {
+        p.isSelected = false;
+        p.setOutline(BLACK, 1); // Reset all pawns outline to default
+    }
+    
+    pawn.isSelected = true;
+    pawn.setOutline(PURPLE, 2); // Highlight selected pawn.
+}

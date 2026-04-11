@@ -17,8 +17,10 @@ class Game {
     ~Game();
 
     void initPlayers();
+    
     void rollDice();
     void advanceTurn();
+
     void handleInput();
     void update();
     void render();
