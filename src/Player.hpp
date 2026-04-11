@@ -8,20 +8,22 @@
 class Player
 {
   public:
-    int turn;            // Players clock-wise turn
-    std::string name;    // Player name
+    int turnOrder;       // Player's clock-wise turn order
+    std::string name;    // Player's name
     raylib::Color color; // Player-Home color, This must be defined from globals
+    bool isActive = true;
 
-    Player(std::string name = "Default", int turn = 0, raylib::Color color = LUDO_RED)
-        : name(name), turn(turn), color(color)
+    Player(std::string playerName = "Default", int turn = 0, raylib::Color playerColor = LUDO_RED)
+        : name(playerName), turnOrder(turn), color(playerColor)
     {
-        if (color == LUDO_BLUE || color == LUDO_RED || color == LUDO_GREEN || color == LUDO_YELLOW)
+        if (playerColor == LUDO_BLUE || playerColor == LUDO_RED || playerColor == LUDO_GREEN ||
+            playerColor == LUDO_YELLOW)
         {
-            this->color = color;
+            this->color = playerColor;
         }
         else
         {
-            std::cout << "Invalid Color, Choose a color from globals.hpp";
+            std::cout << "Invalid Color, Choose a color from Globals.hpp";
         }
     }
 };

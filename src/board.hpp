@@ -5,7 +5,7 @@
 class Board
 {
   private:
-    int dice;
+    int dice = 0;
     Cells cells; // #TODO Dice, Pawns.. dice.hpp, pawn.hpp, handleinput for dice,
                  // handleinput for pawn, handle input for path
 
