@@ -1,13 +1,34 @@
 #include "Game.hpp"
 
+#include "pawn.hpp"
+
+
 // Game has Dice as well as the Board and Players #TODO add Dice, players
-void Game::handleInput() {}
+
+// Handles Input and sets intent.
+void Game::handleInput()
+{
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        for (auto &pawn : board.pawns)
+        {
+            if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
+                continue; // Skip iteration current pawn is not the one clicked
+
+            PawnsManager::selectPawn(pawn);
+
+            // Make your move here, allowed to ask player ;p
+        }
+    }
+}
+
 void Game::update()
 {
     if (isNextTurn)
     {
         advanceTurn();
         rollDice();
+        isNextTurn = false;
     }
 }
 
@@ -41,6 +62,7 @@ void Game::initPlayers()
     {
         players[1].isActive = false;
         players[3].isActive = false;
+        
         players[2].turnOrder = 2; // Mark Yellow as player2
     }
 
@@ -58,11 +80,11 @@ void Game::initPlayers()
     currentPlayer = &players[0];
 }
 
-Game::Game()
+Game::Game() : window(750, 750, "Ludo", FLAG_VSYNC_HINT)
 {
     initPlayers();
 
-    raylib::Window window(750, 750, "Ludo", FLAG_VSYNC_HINT);
+    
     board.init();
 }
 

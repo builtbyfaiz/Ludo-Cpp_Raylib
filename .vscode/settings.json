@@ -10,10 +10,10 @@
 	},
 	"clangd.path": "clangd",
 	"clangd.arguments": [
+		"--cross-file-rename",
 		"--background-index",
 		"--clang-tidy",
 		"--completion-style=detailed",
-		"--header-insertion=never",
-		"--cross-file-rename"
+		"--header-insertion=never"
 	]
 }

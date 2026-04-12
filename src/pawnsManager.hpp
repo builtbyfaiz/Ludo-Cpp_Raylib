@@ -1,23 +1,23 @@
-#include "Pawn.hpp"
-
+#pragma once
 #include <vector>
+#include "pawn.hpp"
 
-
+// Forward declarations
 class Cells;
 
+// A class made to specifically manage pawns over a specific cell grid/board
 class PawnsManager
 {
+  private:
+    static Cells *cells_;
+    static std::vector<Pawn> *pawns_;
+
   public:
-    Cells *cells_;
-    std::vector<Pawn> allPawns;
+    static void init();
+    static void renderPawns();
 
-    void init();
-    void move(Pawn &pawn, int amount);
+    static void movePawn(Pawn &pawn, int amount);
+    static void selectPawn(Pawn &pawn);
 
-    void selectPawn(Pawn &pawn);
-
-    void handleInput();
-    void render();
-
-    PawnsManager(Cells *cells) : cells_(cells) {}
+    static void bindToBoard(Cells *cells, std::vector<Pawn> *pawns);
 };

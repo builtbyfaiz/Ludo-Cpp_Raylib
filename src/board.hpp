@@ -5,13 +5,12 @@
 class Board
 {
   public:
-    
     Cells cells; // #TODO Dice, Pawns.. dice.hpp, pawn.hpp, handleinput for dice,
                  // handleinput for pawn, handle input for path
 
-    PawnsManager pawns;
+    std::vector<Pawn> pawns;
 
-    Board() : pawns(&cells) {}
+    Board();
 
     void init();
     void render();

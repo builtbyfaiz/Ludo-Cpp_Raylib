@@ -1,13 +1,17 @@
 #include "Board.hpp"
 
+Board::Board() {
+    PawnsManager::bindToBoard(&cells, &pawns);
+}
+
 void Board::init()
 {
     cells.init();
-    pawns.init();
+    PawnsManager::init();
 }
 
 void Board::render()
 {
     cells.render();
-    pawns.render();
+    PawnsManager::renderPawns();
 }

@@ -8,7 +8,7 @@
 // Pawn will always be initiated to a home Cell, Color is inferred from Cell.
 Pawn::Pawn(Cell *hC) : homeCell(hC), color(pawnIdToColor[hC->getHomeID()]), ID(hC->getHomeID())
 {
-    moveTo(homeCell);
+    // moveTo(homeCell);
 }
 
 void Pawn::update() {}

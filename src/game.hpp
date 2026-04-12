@@ -12,7 +12,9 @@ class Game {
     Player* currentPlayer = nullptr;
 
     std::vector<Player> players;
-    
+
+    raylib::Window window;
+
     Game();
     ~Game();
 
