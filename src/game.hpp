@@ -6,7 +6,11 @@ class Game {
   public:
     int turn = 1; 
     int dice = 0;
+    int numOfActivePlayers = 0;
+    
     bool isNextTurn = false;
+
+    bool debugMode = true; // Developer console, allows cheats and logs
 
     Board board;
     Player* currentPlayer = nullptr;
@@ -20,8 +24,8 @@ class Game {
 
     void initPlayers();
     
-    void rollDice();
     void advanceTurn();
+    void rollDice();
 
     void handleInput();
     void update();

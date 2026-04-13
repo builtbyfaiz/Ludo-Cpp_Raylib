@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
 #include "pawn.hpp"
+
+#include <vector>
 
 // Forward declarations
 class Cells;

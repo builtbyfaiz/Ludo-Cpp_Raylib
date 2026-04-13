@@ -10,7 +10,6 @@ std::vector<Pawn> *PawnsManager::pawns_;
 
 void PawnsManager::init()
 {
-    pawns_->reserve(16);
     for (auto &row : cells_->grid)
     {
         for (auto &cell : row)
@@ -25,7 +24,7 @@ void PawnsManager::init()
                                                     [ColorToPawnSpawnPos(pawn.getColor()).x];
         }
     }
-    for (auto& p : *pawns_)
+    for (auto &p : *pawns_)
         p.moveTo(p.homeCell);
 }
 
@@ -64,7 +63,7 @@ void PawnsManager::selectPawn(Pawn &pawn)
         p.isSelected = false;
         p.setOutline(BLACK, 2); // Reset all pawns outline to default
     }
-    
+
     pawn.isSelected = true;
     pawn.setOutline(PURPLE, 5); // Highlight selected pawn.
 }

@@ -11,6 +11,7 @@ class Player
     int turnOrder;       // Player's clock-wise turn order
     std::string name;    // Player's name
     raylib::Color color; // Player-Home color, This must be defined from globals
+
     bool isActive = true;
 
     Player(std::string playerName = "Default", int turn = 0, raylib::Color playerColor = LUDO_RED)
