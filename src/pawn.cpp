@@ -22,7 +22,7 @@ void Pawn::setOutline(raylib::Color c, float thickness)
 void Pawn::render()
 {
     rect.Draw(color);
-    rect.DrawLines(BLACK, 2);
+    rect.DrawLines(outline.color, outline.thickness);
 }
 
 // pawn.cpp

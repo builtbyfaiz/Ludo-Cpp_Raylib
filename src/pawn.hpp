@@ -11,7 +11,7 @@ class Pawn
     struct Outline
     {
         raylib::Color color = BLACK;
-        float thickness = 1;
+        float thickness = 2;
     } outline;
 
     // Pawn Base

@@ -62,11 +62,11 @@ void PawnsManager::selectPawn(Pawn &pawn)
     for (auto &p : *pawns_)
     {
         p.isSelected = false;
-        p.setOutline(BLACK, 1); // Reset all pawns outline to default
+        p.setOutline(BLACK, 2); // Reset all pawns outline to default
     }
-
+    
     pawn.isSelected = true;
-    pawn.setOutline(PURPLE, 2); // Highlight selected pawn.
+    pawn.setOutline(PURPLE, 5); // Highlight selected pawn.
 }
 
 // Important, before using pawnsManager, Bind it to pawns to manage and cells to manage over.
