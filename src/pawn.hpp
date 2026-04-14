@@ -51,4 +51,5 @@ class Pawn
 
     // Setter Methods
     void setOutline(raylib::Color color, float thickness);
+    void setColor(raylib::Color color);
 };

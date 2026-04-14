@@ -4,11 +4,11 @@
 #include "PawnMaps.hpp"
 #include "pawn.hpp"
 
-// Initialize Static variables
+// Initialize Static variables for the static class
 Cells *PawnsManager::cells_;
 std::vector<Pawn> *PawnsManager::pawns_;
 
-void PawnsManager::init()
+void PawnsManager::initPawns()
 {
     for (auto &row : cells_->grid)
     {
@@ -26,6 +26,11 @@ void PawnsManager::init()
     }
     for (auto &p : *pawns_)
         p.moveTo(p.homeCell);
+}
+
+void PawnsManager::hidePawn(Pawn &pawn)
+{
+    pawn.setColor({0, 0, 0, 0});
 }
 
 void PawnsManager::movePawn(Pawn &pawn, int dice)

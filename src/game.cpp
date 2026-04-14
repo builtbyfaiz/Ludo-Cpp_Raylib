@@ -1,5 +1,6 @@
 #include "Game.hpp"
 
+#include "PawnsManager.hpp"
 #include "pawn.hpp"
 
 #include <iostream>
@@ -35,10 +36,14 @@ void Game::update()
 
     if (isNextTurn)
     {
-        std::cout
-            << "\nEnter R to advance turn/roll dice: \n"; // this is equivalent to a move being made?
         advanceTurn();
         rollDice();
+        for (auto &pawn : board.pawns)
+        {
+            if (pawn.isSelected && pawn.getColor() == currentPlayer->color)
+               PawnsManager::movePawn(pawn, dice);
+        }
+        std::cout << "\nSelect pawn, and Press R to make move.\n";
         isNextTurn = false;
     }
     // isNextTurn = true? // action happened, it made this? but what?
@@ -90,13 +95,26 @@ void Game::initPlayers()
     currentPlayer = &players[0];
 }
 
+void Game::hideInactivePlayerPawns()
+{
+    for (auto &player : players)
+    {
+        for (auto &pawn : board.pawns)
+        {
+            if (!player.isActive && pawn.getColor() == player.color)
+            {
+                PawnsManager::hidePawn(pawn);
+            }
+        }
+    }
+}
+
 Game::Game() : window(raylib::Window(750, 750, "Ludo", FLAG_VSYNC_HINT))
 {
     initPlayers();
-    board.init();
+    board.init(); // Initiate full cells board and the 16 pawns
+    hideInactivePlayerPawns();
 }
-
-Game::~Game() { CloseWindow(); }
 
 int consecutiveSixCount; // Count number of consecutive sixes #TODO implement further down the line.
 int currentPlayerIndex = 0;
@@ -116,7 +134,7 @@ void Game::advanceTurn()
 
         turn = currentPlayer->turnOrder; // Players store their turn order which we use.
 
-        std::cout << "\n Turn: " << turn << "\n";
+        std::cout << "\nTurn of Player" << turn << "\n";
     }
 }
 

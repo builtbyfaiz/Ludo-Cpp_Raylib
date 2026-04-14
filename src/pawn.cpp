@@ -19,6 +19,11 @@ void Pawn::setOutline(raylib::Color c, float thickness)
     outline.thickness = thickness;
 }
 
+void Pawn::setColor(raylib::Color c) 
+{
+    this->color = c;
+}
+
 void Pawn::render()
 {
     rect.Draw(color);

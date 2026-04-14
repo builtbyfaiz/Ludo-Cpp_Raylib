@@ -7,7 +7,9 @@ Board::Board() {
 void Board::init()
 {
     cells.init();
-    PawnsManager::init();
+    PawnsManager::initPawns();
+
+    
 }
 
 void Board::render()

@@ -20,7 +20,8 @@ class Game {
     raylib::Window window;
 
     Game();
-    ~Game();
+
+    void hideInactivePlayerPawns();
 
     void initPlayers();
     
