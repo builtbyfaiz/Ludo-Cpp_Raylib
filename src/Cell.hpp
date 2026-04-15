@@ -10,7 +10,7 @@ class Cell
 
     const int gridID_, pathID_, homeID_, winPathID;
 
-    raylib::Color outlineColor     = LUDOGRAY;
+    raylib::Color outlineColor     = LUDO_GRAY;
     float         outlineThickness = 0;
     
     public:
