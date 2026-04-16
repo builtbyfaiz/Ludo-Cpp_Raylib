@@ -8,7 +8,6 @@ class Cells
 {
   public:
     std::vector<std::vector<Cell>> grid; // 2D Vector, same as arr[][]
-    // std::vector<std::vector<Cell>> pathCells; // 2D Vector, same as arr[][]
 
     void init();
     void render();

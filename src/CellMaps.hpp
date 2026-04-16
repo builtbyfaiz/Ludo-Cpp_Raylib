@@ -7,7 +7,7 @@
 
 // clang-format off
 
-// Anonomous namespace, this prevents functions being visible elsewhere
+// Anonomous namespace, this prevents functions being visible elsewhere 
 namespace 
 {
     // Grid color mapping for the Ludo board.

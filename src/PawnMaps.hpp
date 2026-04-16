@@ -1,6 +1,7 @@
 #pragma once
 #include "globals.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
+
 #include <map>
 
 // Home ID to Pawn Color
@@ -17,7 +18,7 @@ inline std::map<int, raylib::Color> pawnIdToColor = {
     {7, LUDO_GREEN}, // Top-right 3
     {8, LUDO_GREEN}, // Top-right 4
 
-    {9, LUDO_BLUE},  // Bottom-left 1
+    {9,  LUDO_BLUE}, // Bottom-left 1
     {10, LUDO_BLUE}, // Bottom-left 2
     {11, LUDO_BLUE}, // Bottom-left 3
     {12, LUDO_BLUE}, // Bottom-left 4
@@ -32,10 +33,10 @@ inline std::map<int, raylib::Color> pawnIdToColor = {
 inline raylib::Vector2 ColorToPawnSpawnPos(const raylib::Color color)
 {
     // inline keyword is here being used to prevent multiple definitions, std::map did not work for custom datatypes
-    if(color==LUDO_RED)    return {1, 6};
-    if(color==LUDO_GREEN)  return {8, 1};
-    if(color==LUDO_BLUE)   return {6, 13};
-    if(color==LUDO_YELLOW) return {13, 8};
+    if(color == LUDO_RED)    return {1, 6};
+    if(color == LUDO_BLUE)   return {6, 13};
+    if(color == LUDO_GREEN)  return {8, 1};
+    if(color == LUDO_YELLOW) return {13, 8};
     
     return {0,0}; // Return 0,0 if nothing matches
 }
