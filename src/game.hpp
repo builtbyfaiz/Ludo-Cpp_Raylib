@@ -4,13 +4,12 @@
 
 class Game {
   public:
-    int turn = 1; 
+    int turn = 0; 
     int dice = 0;
     int numOfActivePlayers = 0;
     
-    bool isNextTurn = false;
-
-    bool debugMode = true; // Developer console, allows cheats and logs
+    bool isNextTurn = true;
+    bool debugMode = true; // Developer console, allows cheats and logs, Will be used later
 
     Board board;
     Player* currentPlayer = nullptr;

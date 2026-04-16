@@ -11,12 +11,10 @@ void Cells::render()
 {
     for (auto &row : grid)
         for (auto &cell : row)
-            cell.render();
+            cell.render();        
 }
 
 // clang-format off
-/// @brief Create the board by initializing all cells
-Cells::Cells(){}
 
 void Cells::init() 
 {

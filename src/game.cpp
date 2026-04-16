@@ -13,15 +13,16 @@ void Game::handleInput()
     // Check if current player's pawn is clicked then select it.
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
+        PawnsManager::deselectAllPawns(); // This is done so that clicking on a cell deselects all
+
         for (auto &pawn : board.pawns)
         {
             if (currentPlayer->color == pawn.getColor())
             {
                 if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
                     continue; // Skip iteration if current pawn is not the one clicked
-
-                std::cout << currentPlayer->color.ToString();
-                PawnsManager::selectPawn(pawn);
+                
+                PawnsManager::selectPawn(pawn); // Select the clicked pawn.
             }
             // Make your move here, allowed to ask player ;p
         }
@@ -35,15 +36,20 @@ void Game::update()
         isNextTurn = 1;
 
     if (isNextTurn)
-    {
+    {   
         advanceTurn();
         rollDice();
+
+        PawnsManager::highlightPawnsOfColor(currentPlayer->color);
+
         for (auto &pawn : board.pawns)
         {
-            if (pawn.isSelected && pawn.getColor() == currentPlayer->color)
-               PawnsManager::movePawn(pawn, dice);
+            if (pawn.isSelected() && pawn.getColor() == currentPlayer->color)
+            {
+                PawnsManager::movePawn(pawn, dice);
+            }
         }
-        std::cout << "\nSelect pawn, and Press R to make move.\n";
+        PawnsManager::deselectAllPawns();
         isNextTurn = false;
     }
     // isNextTurn = true? // action happened, it made this? but what?
@@ -99,12 +105,9 @@ void Game::hideInactivePlayerPawns()
 {
     for (auto &player : players)
     {
-        for (auto &pawn : board.pawns)
+        if (!player.isActive)
         {
-            if (!player.isActive && pawn.getColor() == player.color)
-            {
-                PawnsManager::hidePawn(pawn);
-            }
+            PawnsManager::hidePawnsOfColor(player.color);
         }
     }
 }
@@ -112,16 +115,16 @@ void Game::hideInactivePlayerPawns()
 Game::Game() : window(raylib::Window(750, 750, "Ludo", FLAG_VSYNC_HINT))
 {
     initPlayers();
-    board.init(); // Initiate full cells board and the 16 pawns
+    board.init(); // Initiate full cell board and the 16 pawns
     hideInactivePlayerPawns();
 }
 
 int consecutiveSixCount; // Count number of consecutive sixes #TODO implement further down the line.
-int currentPlayerIndex = 0;
+int currentPlayerIndex = -1;
 
 void Game::advanceTurn()
 {
-    if (dice != 6)
+    if (dice != 6) // If the dice was previosly 6, turn won't advance
     {
         do
         {
@@ -129,17 +132,14 @@ void Game::advanceTurn()
             if (currentPlayerIndex == 4) // Wrap index 0-3 as there are 4 total players
                 currentPlayerIndex = 0;
         } while (!players[currentPlayerIndex].isActive);
-
-        currentPlayer = &players[currentPlayerIndex];
-
-        turn = currentPlayer->turnOrder; // Players store their turn order which we use.
-
-        std::cout << "\nTurn of Player" << turn << "\n";
     }
+    currentPlayer = &players[currentPlayerIndex];
+    turn = currentPlayer->turnOrder; // Players store their turn order which we use.
+    std::cout << "\nPlayer" << turn << " " << players[currentPlayerIndex].name << "\'s turn:\n";
 }
 
 void Game::rollDice()
 {
     dice = GetRandomValue(1, 6);
-    std::cout << currentPlayer->name << " Rolled " << dice << ", Make your move and Press R\n";
+    std::cout << currentPlayer->name << " Rolled a " << dice << ", Make your move and Press R\n";
 }

@@ -11,23 +11,26 @@ Pawn::Pawn(Cell *hC) : homeCell(hC), color(pawnIdToColor[hC->getHomeID()]), ID(h
     // moveTo(homeCell);
 }
 
-void Pawn::update() {}
+// void Pawn::setOutline(raylib::Color c, float thickness)
+// {
+//     outline.color = c;
+//     outline.thickness = thickness;
+// }
 
-void Pawn::setOutline(raylib::Color c, float thickness)
-{
-    outline.color = c;
-    outline.thickness = thickness;
-}
+void Pawn::setColor(raylib::Color c) { this->color = c; }
 
-void Pawn::setColor(raylib::Color c) 
+// Renders the pawn rectangle with outline outwards
+void Pawn::renderWithOutline(raylib::Color outlineColor, float thickness)
 {
-    this->color = c;
-}
+    raylib::Rectangle rectToRender = rect;
 
-void Pawn::render()
-{
-    rect.Draw(color);
-    rect.DrawLines(outline.color, outline.thickness);
+    rectToRender.x -= thickness;
+    rectToRender.y -= thickness;
+    rectToRender.width  += 2 * thickness;
+    rectToRender.height += 2 * thickness;
+
+    rectToRender.Draw(color);
+    rectToRender.DrawLines(outlineColor, thickness);
 }
 
 // pawn.cpp
@@ -47,14 +50,32 @@ void Pawn::spawn()
     score = 1;
     isSpawned = true;
 }
+
 void Pawn::die()
 {
     moveTo(homeCell);
     score = 0;
 }
 
-const raylib::Rectangle Pawn::getRect() { return rect; }
-
-const raylib::Color Pawn::getColor() { return color; }
+// Base Getters
 
 const int Pawn::getScore() { return score; }
+const raylib::Color Pawn::getColor() { return color; }
+const raylib::Rectangle Pawn::getRect() { return rect; }
+
+// Style Setters
+
+void Pawn::hide() { hidden = true; }
+void Pawn::unhide() { hidden = false; }
+
+void Pawn::select() { selected = true; }
+void Pawn::deselect() { selected = false; }
+
+void Pawn::highlight() { highlighted = true; }
+void Pawn::unhighlight() { highlighted = false; }
+
+// Style Getters
+
+bool Pawn::isHidden() { return hidden; }
+bool Pawn::isSelected() { return selected; }
+bool Pawn::isHighlighted() { return highlighted; }
