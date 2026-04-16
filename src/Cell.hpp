@@ -4,20 +4,18 @@
 // clang-format off
 class Cell
 {
-  private: 
-    raylib::Color color;
-    raylib::Rectangle rect;
-
+  private:
     const int gridID_, pathID_, homeID_, winPathID;
+    
+    raylib::Rectangle rect;
+    raylib::Color color;
+    raylib::Color outlineColor = LUDO_GRAY;
+    
+    float outlineThickness = 0;
 
-    raylib::Color outlineColor     = LUDO_GRAY;
-    float         outlineThickness = 0;
-    
-    public:
-    const enum Type {PATH_CELL, HOME_CELL, SPECIAL_PATH_CELL, OTHER} type;
-    
-    // Cell():type(OTHER){}
-    
+  public:
+    const enum Type { PATH_CELL, HOME_CELL, SPECIAL_PATH_CELL, OTHER } type;
+
     Cell(raylib::Rectangle r = {0, 0, 0, 0},
          raylib::Color     c = raylib::WHITE,
          Type              t = OTHER,
@@ -27,7 +25,7 @@ class Cell
          const int specialID = 0)
 
         : rect(r), color(c), type(t), gridID_(gridID), pathID_(pathID), homeID_(homeID),
-          winPathID(specialID){}
+          winPathID(specialID) {}
 
     void render();
 
@@ -36,14 +34,11 @@ class Cell
     int getPathID();
     int getHomeID();
     int getWinPathID();
+
     raylib::Color getColor();
     raylib::Rectangle getRect();
 
     // Setters
     void setColor(raylib::Color color);
-    void setGridID(int gID);
-    void setPathID(int pID);
-    void setHomeID(int hID);
-    void setSpecialID(int sID);
     void setOutlineThickness(float thickness);
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include "Cells.hpp"
-#include "PawnsManager.hpp"
+#include "Pawn.hpp"
 
 class Board
 {
