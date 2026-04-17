@@ -64,7 +64,7 @@ void Game::hideInactivePlayerPawns()
 
 void Game::advanceTurn()
 {
-    if (dice != 6) // If the dice was previosly 6, turn won't advance
+    if (dice != 6 && isValidMovePlayed) // If the dice was previosly 6, turn won't advance
     {
         do
         {
@@ -113,10 +113,8 @@ void Game::update()
 {
     // Temp equivalent to making a move + rolling the dice
     // This works unless we need to allow player to choose what dice to use when 6 is rolled
-    if (IsKeyPressed(KEY_R))
-        isNextTurn = 1;
 
-    if (isNextTurn)
+    if (IsKeyPressed(KEY_M)) // Use M to move
     {
         for (auto &pawn : board.pawns)
         {
@@ -124,24 +122,42 @@ void Game::update()
                 continue; // Skip iteration if pawn is not selected and not current players
 
             if (pawn.isSpawned())
+            {
                 PawnsManager::movePawn(pawn, dice);
-
-            if (!pawn.isSpawned() && dice == 6)
+                isValidMovePlayed = true;
+            }
+            else if (!pawn.isSpawned() && dice == 6)
+            {
                 pawn.spawn();
-                
-                
-        } //Valid move?
+                isValidMovePlayed = true;
+            }
+            else
+            {
+                std::cout << "Invalid Move Played, Try again and Press R\n";
+                isValidMovePlayed = false;
+            }
+        }
+    }
 
+    if (isValidMovePlayed)
+    {
+        isNextTurn = 1;
+        isValidMovePlayed = false;
+    }
+
+    if (isNextTurn)
+    {
         advanceTurn();
         rollDice();
 
         PawnsManager::deselectAllPawns();
-        PawnsManager::highlightPawnsOfColor(currentPlayer->color);       
+        PawnsManager::highlightPawnsOfColor(currentPlayer->color);
 
         isNextTurn = false;
     }
 }
 
+// Temp Variables
 int textX;
 int textY;
 int iterator = 0;

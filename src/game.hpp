@@ -12,8 +12,9 @@ class Game
 
     int numOfActivePlayers = 0;
 
-    bool isNextTurn = true;
-    bool debugMode  = true;  // Developer console, allows cheats and logs, Will be used later
+    bool isNextTurn        = true;
+    bool isValidMovePlayed = false;
+    bool debugMode         = true;   // Developer console, allows cheats and logs, Will be used later
 
     Board board;
     Player *currentPlayer = nullptr;
