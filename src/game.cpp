@@ -37,7 +37,6 @@ void Game::initPlayers()
         players[2].turnOrder = 2; // Mark Yellow i.e 3rd in vector as player2
     }
 
-    //
     if (numOfActivePlayers == 3)
         players[3].isActive = false;
 
@@ -119,29 +118,58 @@ void Game::update()
 
     if (isNextTurn)
     {
+        for (auto &pawn : board.pawns)
+        {
+            if (!(pawn.getColor() == currentPlayer->color && pawn.isSelected()))
+                continue; // Skip iteration if pawn is not selected and not current players
+
+            if (pawn.isSpawned())
+                PawnsManager::movePawn(pawn, dice);
+
+            if (!pawn.isSpawned() && dice == 6)
+                pawn.spawn();
+                
+                
+        } //Valid move?
+
         advanceTurn();
         rollDice();
 
-        PawnsManager::highlightPawnsOfColor(currentPlayer->color);
-
-        for (auto &pawn : board.pawns)
-        {
-            if (pawn.isSelected() && pawn.getColor() == currentPlayer->color)
-            {
-                PawnsManager::movePawn(pawn, dice);
-            }
-        }
         PawnsManager::deselectAllPawns();
+        PawnsManager::highlightPawnsOfColor(currentPlayer->color);       
+
         isNextTurn = false;
     }
 }
 
+int textX;
+int textY;
+int iterator = 0;
 void Game::render()
 {
+    // Display current value of dice in center
+    raylib::Rectangle rect = board.cells.grid[7][7].getRect();
+
+    int fontSize = (rect.height / 1) + iterator;
+    if (IsKeyPressed(KEY_L))
+    {
+        iterator++;
+        std::cout << fontSize;
+    }
+    if (IsKeyPressed(KEY_K))
+    {
+        iterator--;
+        std::cout << fontSize;
+    }
+
+    textX = (GetScreenWidth() - fontSize + 25) / 2;
+    textY = (GetScreenHeight() - fontSize) / 2;
+
     BeginDrawing();
     ClearBackground(raylib::BLACK);
 
     board.render();
+    raylib::DrawText(std::to_string(dice), textX, textY, fontSize, WHITE);
 
     EndDrawing();
 }
