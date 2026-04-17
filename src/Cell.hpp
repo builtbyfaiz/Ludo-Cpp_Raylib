@@ -5,7 +5,7 @@
 class Cell
 {
   private:
-    const int gridID_, pathID_, homeID_, winPathID;
+    const int gridID_, pathID_, homeID_, winPathID_;
     
     raylib::Rectangle rect;
     raylib::Color color;
@@ -14,18 +14,16 @@ class Cell
     float outlineThickness = 0;
 
   public:
-    const enum Type { PATH_CELL, HOME_CELL, SPECIAL_PATH_CELL, OTHER } type;
-
+    // Default Constructor with default values
     Cell(raylib::Rectangle r = {0, 0, 0, 0},
          raylib::Color     c = raylib::WHITE,
-         Type              t = OTHER,
          const int gridID    = 0,
          const int pathID    = 0,
          const int homeID    = 0,
-         const int specialID = 0)
+         const int winPathID = 0)
 
-        : rect(r), color(c), type(t), gridID_(gridID), pathID_(pathID), homeID_(homeID),
-          winPathID(specialID) {}
+        : rect(r), color(c), gridID_(gridID), pathID_(pathID), homeID_(homeID),
+          winPathID_(winPathID) {}
 
     void render();
 

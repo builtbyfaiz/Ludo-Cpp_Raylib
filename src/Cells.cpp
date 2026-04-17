@@ -20,7 +20,7 @@ void Cells::init()
         std::vector<Cell> cellsRow; 
         for (size_t x = 0; x < 15; x++)
         {
-            float width  = GetScreenWidth() / 15.0;
+            float width  = GetScreenWidth()  / 15.0;
             float height = GetScreenHeight() / 15.0;
 
             raylib::Color     color = boardColorGrid(y, x);
@@ -31,12 +31,9 @@ void Cells::init()
             int homeID    = homeIDGrid[y][x];           // 1 - 16
             int winPathID = winPathIDGrid[y][x] - '0';  // Ascii to Int, #TODO will turn it into direct func soon
 
-            Cell::Type type = pathID > 0 ? Cell::PATH_CELL : Cell::OTHER;
-
             // std::cout << width << height;
             Cell cell(rect,     // Rectangle [X, Y, Size]
-                      color,    // Color from legend
-                      type,     // Path, Home, Other etc., not used so much as of now
+                      color,    // Color from legend                      
                       gridID,   // Grid ID... All Cells Numerized
                       pathID,   // Path Id of Direct path that all pawns move on
                       homeID,   // Base Cells Id
@@ -46,9 +43,9 @@ void Cells::init()
             if (cell.getWinPathID() > 0 || cell.getPathID() > 0)
                 cell.setOutlineThickness(1);
 
-            cellsRow.push_back(cell);
+            cellsRow.emplace_back(cell);
         }
-        grid.push_back(cellsRow);
+        grid.emplace_back(cellsRow);
     }
 }
 

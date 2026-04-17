@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
-#include "PawnsManager.hpp"
 #include "Pawn.hpp"
+#include "PawnsManager.hpp"
 
 #include <iostream>
 
@@ -21,20 +21,23 @@ void Game::initPlayers()
     players.emplace_back(Player("PLayer3", 3, LUDO_YELLOW));
     players.emplace_back(Player("Player4", 4, LUDO_BLUE));
 
+    // Ask for players actively playing, and exit loop when valid input
     do
     {
         std::cout << "Enter Number of Active Players(2-4): ";
         std::cin >> numOfActivePlayers;
     } while (numOfActivePlayers != 4 && numOfActivePlayers != 3 && numOfActivePlayers != 2);
 
+    // Mark Diagonal players active if 2 are active.
     if (numOfActivePlayers == 2)
     {
         players[1].isActive = false;
         players[3].isActive = false;
 
-        players[2].turnOrder = 2; // Mark Yellow as player2
+        players[2].turnOrder = 2; // Mark Yellow i.e 3rd in vector as player2
     }
 
+    //
     if (numOfActivePlayers == 3)
         players[3].isActive = false;
 
@@ -88,28 +91,29 @@ void Game::rollDice()
 // Handles Input and sets intent.
 void Game::handleInput()
 {
-    // Check if current player's pawn is clicked then select it.
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    // if mouse button clicked, proceed else return
+    if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        return;
+
+    PawnsManager::deselectAllPawns(); // This is done so that clicking on a cell deselects all
+
+    for (auto &pawn : board.pawns)
     {
-        PawnsManager::deselectAllPawns(); // This is done so that clicking on a cell deselects all
-
-        for (auto &pawn : board.pawns)
+        if (currentPlayer->color == pawn.getColor())
         {
-            if (currentPlayer->color == pawn.getColor())
-            {
-                if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
-                    continue; // Skip iteration if current pawn is not the one clicked
+            if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
+                continue; // Skip iteration if current pawn is not the one clicked
 
-                PawnsManager::selectPawn(pawn); // Select the clicked pawn.
-            }
-            // Make your move here, allowed to ask player ;p
+            PawnsManager::selectPawn(pawn); // Select the clicked pawn.
         }
+        // Make your move here, allowed to ask player ;p
     }
 }
 
 void Game::update()
 {
-
+    // Temp equivalent to making a move + rolling the dice
+    // This works unless we need to allow player to choose what dice to use when 6 is rolled
     if (IsKeyPressed(KEY_R))
         isNextTurn = 1;
 
@@ -130,7 +134,6 @@ void Game::update()
         PawnsManager::deselectAllPawns();
         isNextTurn = false;
     }
-    // isNextTurn = true? // action happened, it made this? but what?
 }
 
 void Game::render()

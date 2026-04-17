@@ -31,7 +31,6 @@ class PawnsManager
     // Functions for a chosen Pawn
     static void movePawn(Pawn &pawn, int amount);
     
-    
     // Style Helpers for Pawns
     static void highlightPawnsOfColor(raylib::Color playerColor);  // Used to highlight current player via color
     static void hidePawnsOfColor(raylib::Color playerColor);       // Used to hide inactive player pawn via color

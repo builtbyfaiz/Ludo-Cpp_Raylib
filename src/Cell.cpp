@@ -23,7 +23,7 @@ void Cell::render()
 int Cell::getGridID() { return gridID_; }
 int Cell::getPathID() { return pathID_; }
 int Cell::getHomeID() { return homeID_; }
-int Cell::getWinPathID() { return winPathID; }
+int Cell::getWinPathID() { return winPathID_; }
 
 raylib::Color Cell::getColor() { return color; }
 raylib::Rectangle Cell::getRect() { return rect; }
