@@ -79,7 +79,7 @@ void PawnsManager::renderPawns()
 void PawnsManager::movePawn(Pawn &pawn, int dice)
 {
     // Return if the requested move is not valid
-    if (!pawn.isSpawned)    return;
+    if (!pawn.isSpawned())  return;
     if (!pawn.isSelected()) return;
 
     int newPathID = pawn.currentCell->getPathID() + dice;

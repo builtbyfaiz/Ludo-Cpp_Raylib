@@ -19,13 +19,10 @@ class Pawn
     bool highlighted = false;  // Based on turn
     bool selected    = false;  // Based on click
 
+    bool spawned  = false;
+
   public:
     int score = 0; // Equivalent to total cells travelled, used for checking win condition.
-
-    // Pawn Base State
-    bool isSpawned  = false;
-    bool isMoveable = false;  // Based on state
-    bool isKillable = false;  // Based on state
 
     // Pawn's Cell information
     Cell *homeCell    = nullptr;
@@ -45,6 +42,9 @@ class Pawn
     const int getScore();
     const raylib::Color getColor();
     const raylib::Rectangle getRect();
+    
+    // Pawn Base State
+    bool isSpawned();
     
     // Outline Style Getters
     bool isHidden();      // For Inactive player pawns

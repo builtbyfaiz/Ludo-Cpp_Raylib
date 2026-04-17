@@ -10,7 +10,7 @@ void Pawn::moveTo(Cell *cell)
 {
     currentCell = cell;
     Vector2 newPos =
-        currentCell->getRect().GetPosition() +
+          currentCell->getRect().GetPosition() +
         ((currentCell->getRect().GetSize() - rect.GetSize()) / 2); // Gets Pos right in mid of cell
 
     rect.SetPosition(newPos); // sets pawns rect to middle of cells rect
@@ -19,8 +19,8 @@ void Pawn::moveTo(Cell *cell)
 void Pawn::spawn()
 {
     moveTo(spawnCell);
-    score = 1;
-    isSpawned = true;
+    score   = 1;
+    spawned = true;
 }
 
 void Pawn::die()
@@ -53,12 +53,22 @@ bool Pawn::isHidden() { return hidden; }
 bool Pawn::isHighlighted() { return highlighted; }
 bool Pawn::isSelected() { return selected; }
 
+bool Pawn::isSpawned() { return spawned; }
+
 // Setter Methods
 void Pawn::setColor(raylib::Color c) { this->color = c; }
 
 // Outline Style Setters
-void Pawn::hide() { hidden = true; }
-void Pawn::unhide() { hidden = false; }
+void Pawn::hide() 
+{
+    hidden = true;
+    color.SetA(0); // Make Pawn transparent
+}
+void Pawn::unhide() 
+{
+    hidden = false; 
+    color.SetA(255); // Make Pawn opaque
+}
 
 void Pawn::select() { selected = true; }
 void Pawn::deselect() { selected = false; }
