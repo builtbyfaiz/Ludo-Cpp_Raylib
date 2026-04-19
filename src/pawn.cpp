@@ -50,9 +50,11 @@ const raylib::Rectangle Pawn::getRect() { return rect; }
 
 // Outline Style Getters
 bool Pawn::isHidden() { return hidden; }
-bool Pawn::isHighlighted() { return highlighted; }
 bool Pawn::isSelected() { return selected; }
+bool Pawn::isHighlighted() { return highlighted; }
 
+// State Getters
+bool Pawn::hasWon() { return won; }
 bool Pawn::isSpawned() { return spawned; }
 
 // Setter Methods

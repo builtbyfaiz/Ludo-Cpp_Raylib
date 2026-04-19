@@ -19,7 +19,9 @@ class Pawn
     bool highlighted = false;  // Based on turn
     bool selected    = false;  // Based on click
 
-    bool spawned  = false;
+    bool spawned   = false;
+    bool onWinPath = false;
+    bool won       = false;
 
   public:
     int score = 0; // Equivalent to total cells travelled, used for checking win condition.
@@ -45,6 +47,7 @@ class Pawn
     
     // Pawn Base State
     bool isSpawned();
+    bool hasWon();
     
     // Outline Style Getters
     bool isHidden();      // For Inactive player pawns

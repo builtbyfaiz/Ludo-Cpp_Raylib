@@ -62,9 +62,27 @@ void Game::hideInactivePlayerPawns()
     }
 }
 
+bool Game::validMoveExists()
+{
+    for (auto &pawn : board.pawns)
+    {
+        if (pawn.getColor() == currentPlayer->color)
+        {
+            if (pawn.isSpawned())
+                return true; // we can  move it, valid move, will check for winpath conditions later
+
+            if (!pawn.isSpawned() && dice == 6)
+                return true; // we can spawn it, valid move
+        }
+
+        //TODO add winpath logic here as well
+    }
+    return false;
+}
+
 void Game::advanceTurn()
 {
-    if (dice != 6 && isValidMovePlayed) // If the dice was previosly 6, turn won't advance
+    if (dice != 6) // If the dice was previosly 6, turn won't advance
     {
         do
         {
@@ -94,18 +112,17 @@ void Game::handleInput()
     if (!IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         return;
 
-    PawnsManager::deselectAllPawns(); // This is done so that clicking on a cell deselects all
+    PawnsManager::deselectAllPawns(); // Deselect all pawns if randomly click on cell
 
     for (auto &pawn : board.pawns)
     {
-        if (currentPlayer->color == pawn.getColor())
-        {
-            if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
-                continue; // Skip iteration if current pawn is not the one clicked
+        if (currentPlayer->color != pawn.getColor())
+            continue; // skip if pawn is of a different color than active player
 
-            PawnsManager::selectPawn(pawn); // Select the clicked pawn.
-        }
-        // Make your move here, allowed to ask player ;p
+        if (!CheckCollisionPointRec(GetMousePosition(), pawn.getRect()))
+            continue; // Skip if pawn is not the one clicked
+
+        PawnsManager::selectPawn(pawn); // Select the clicked pawn.
     }
 }
 
@@ -116,32 +133,42 @@ void Game::update()
 
     if (IsKeyPressed(KEY_M)) // Use M to move
     {
-        for (auto &pawn : board.pawns)
-        {
-            if (!(pawn.getColor() == currentPlayer->color && pawn.isSelected()))
-                continue; // Skip iteration if pawn is not selected and not current players
 
-            if (pawn.isSpawned())
+        if (validMoveExists())
+        {
+            for (auto &pawn : board.pawns)
             {
-                PawnsManager::movePawn(pawn, dice);
-                isValidMovePlayed = true;
-            }
-            else if (!pawn.isSpawned() && dice == 6)
-            {
-                pawn.spawn();
-                isValidMovePlayed = true;
-            }
-            else
-            {
-                std::cout << "Invalid Move Played, Try again and Press R\n";
-                isValidMovePlayed = false;
+                if (pawn.getColor() != currentPlayer->color || !pawn.isSelected())
+                    continue; // Skip iteration if pawn is not selected and not current players
+
+                if (pawn.isSpawned())
+                {
+                    PawnsManager::movePawn(pawn, dice);
+                    isValidMovePlayed = true;
+                    break;
+                }
+
+                else if (!pawn.isSpawned() && dice == 6)
+                {
+                    pawn.spawn();
+                    isValidMovePlayed = true;
+                    break;
+                }
+                else
+                {
+                    std::cout << "Invalid Move Played, Try again and Press M\n";
+                    isValidMovePlayed = false;
+                    break;
+                }
             }
         }
+        else
+            isValidMovePlayed = true; // As there are no moves available, we count it as valid and allow turn advancement
     }
 
     if (isValidMovePlayed)
     {
-        isNextTurn = 1;
+        isNextTurn = true;
         isValidMovePlayed = false;
     }
 

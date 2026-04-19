@@ -12,8 +12,9 @@ class Game
 
     int numOfActivePlayers = 0;
 
-    bool isNextTurn        = true;
-    bool isValidMovePlayed = false;
+    // By default keep these true to initially start the game
+    bool isNextTurn        = true; 
+    bool isValidMovePlayed = true;
     bool debugMode         = true;   // Developer console, allows cheats and logs, Will be used later
 
     Board board;
@@ -27,6 +28,7 @@ class Game
 
     void hideInactivePlayerPawns();
 
+    bool validMoveExists();
     void advanceTurn();
     void rollDice();
 
