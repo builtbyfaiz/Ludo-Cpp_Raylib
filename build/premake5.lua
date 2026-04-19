@@ -240,7 +240,7 @@ if (downloadRaylib) then
         cdialect "C17"
         cppdialect "C++17"
 
-        includedirs {raylib_dir .. "/src" }
+        externalincludedirs {raylib_dir .. "/src" }
         externalincludedirs { raylibcpp_dir .. "/include" }
 
         flags { "ShadowedVariables"}
