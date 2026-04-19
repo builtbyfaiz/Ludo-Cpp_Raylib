@@ -1,5 +1,6 @@
 #include "Game.hpp"
 
+#include "GameRules.hpp"
 #include "Pawn.hpp"
 #include "PawnsManager.hpp"
 
@@ -8,6 +9,8 @@
 // Constructor
 Game::Game() : window(raylib::Window(750, 750, "Ludo", FLAG_VSYNC_HINT))
 {
+    GameRules::bindToGameState(this); // The rules helper will be used to validate moves of this game.
+
     initPlayers();
     board.init(); // Initiate full cell board and the 16 pawns
     hideInactivePlayerPawns();
@@ -62,35 +65,14 @@ void Game::hideInactivePlayerPawns()
     }
 }
 
-bool Game::validMoveExists()
-{
-    for (auto &pawn : board.pawns)
-    {
-        if (pawn.getColor() == currentPlayer->color)
-        {
-            if (pawn.isSpawned())
-                return true; // we can  move it, valid move, will check for winpath conditions later
-
-            if (!pawn.isSpawned() && dice == 6)
-                return true; // we can spawn it, valid move
-        }
-
-        //TODO add winpath logic here as well
-    }
-    return false;
-}
-
 void Game::advanceTurn()
 {
-    if (dice != 6) // If the dice was previosly 6, turn won't advance
+    do
     {
-        do
-        {
-            currentPlayerIndex++;
-            if (currentPlayerIndex == 4) // Wrap index 0-3 as there are 4 total players
-                currentPlayerIndex = 0;
-        } while (!players[currentPlayerIndex].isActive);
-    }
+        currentPlayerIndex++;
+        if (currentPlayerIndex == 4) // Wrap index 0-3 as there are 4 total players
+            currentPlayerIndex = 0;
+    } while (!players[currentPlayerIndex].isActive);
 
     currentPlayer = &players[currentPlayerIndex];
     turn = currentPlayer->turnOrder; // Players store their turn order which we use.
@@ -131,62 +113,46 @@ void Game::update()
     // Temp equivalent to making a move + rolling the dice
     // This works unless we need to allow player to choose what dice to use when 6 is rolled
 
-    if (IsKeyPressed(KEY_M)) // Use M to move
+    if (!IsKeyPressed(KEY_M)) return; //if move key not pressed return
+
+    Pawn* selectedPawn  = PawnsManager::getSelectedPawn();
+    bool movesAvailable = GameRules::movesExist();
+    bool moveMade       = false;
+
+    if (!movesAvailable)
     {
-
-        if (validMoveExists())
-        {
-            for (auto &pawn : board.pawns)
-            {
-                if (pawn.getColor() != currentPlayer->color || !pawn.isSelected())
-                    continue; // Skip iteration if pawn is not selected and not current players
-
-                if (pawn.isSpawned())
-                {
-                    PawnsManager::movePawn(pawn, dice);
-                    isValidMovePlayed = true;
-                    break;
-                }
-
-                else if (!pawn.isSpawned() && dice == 6)
-                {
-                    pawn.spawn();
-                    isValidMovePlayed = true;
-                    break;
-                }
-                else
-                {
-                    std::cout << "Invalid Move Played, Try again and Press M\n";
-                    isValidMovePlayed = false;
-                    break;
-                }
-            }
-        }
-        else
-            isValidMovePlayed = true; // As there are no moves available, we count it as valid and allow turn advancement
+        std::cout << "No moves available. Skipping turn.\n";
     }
-
-    if (isValidMovePlayed)
+    else if (selectedPawn == nullptr)
     {
-        isNextTurn = true;
-        isValidMovePlayed = false;
+        std::cout << "No pawn selected. Click to select.\n";
+        return; // Wait for pawn selection.
     }
-
-    if (isNextTurn)
+    else if (GameRules::canSpawn(*selectedPawn))
     {
+        PawnsManager::spawnPawn(*selectedPawn);
+        moveMade = true;
+    }
+    else if (GameRules::canMove(*selectedPawn))
+    {
+        PawnsManager::movePawn(*selectedPawn, dice);
+        moveMade = true;
+    }
+    else
+    {
+        std::cout << "Pawn not moveable. Pick a different pawn.\n";
+        return; // Wait for a better selection of pawn
+    }
+    
+    if (dice != 6 || !moveMade) // Advance turn if dice is not 6 OR a valid move has been made
         advanceTurn();
-        rollDice();
 
-        PawnsManager::deselectAllPawns();
-        PawnsManager::highlightPawnsOfColor(currentPlayer->color);
-
-        isNextTurn = false;
-    }
+    rollDice();
+    PawnsManager::deselectAllPawns();
+    PawnsManager::highlightPawnsOfColor(currentPlayer->color);
 }
 
 // Temp Variables
-int textX;
-int textY;
 int iterator = 0;
 void Game::render()
 {
@@ -205,8 +171,8 @@ void Game::render()
         std::cout << fontSize;
     }
 
-    textX = (GetScreenWidth() - fontSize + 25) / 2;
-    textY = (GetScreenHeight() - fontSize) / 2;
+    int textX = round((GetScreenWidth() - fontSize + 25) / 2.0);
+    int textY = round((GetScreenHeight() - fontSize) / 2.0);
 
     BeginDrawing();
     ClearBackground(raylib::BLACK);

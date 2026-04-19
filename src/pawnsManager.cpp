@@ -75,10 +75,18 @@ void PawnsManager::renderPawns()
         pawn.renderWithOutline(getOutline(pawn).color, getOutline(pawn).thickness);
 }
 
+void PawnsManager::spawnPawn(Pawn &pawn) 
+{
+    if (!pawn.isSelected()) 
+        return;
+        
+    pawn.spawn();
+}
+
 // Moves a pawn in the path grid according to the dice
 void PawnsManager::movePawn(Pawn &pawn, int dice)
 {
-    // Return if the requested move is not valid
+    // Return if the requested move is not valid, redundant validation for good measure
     if (!pawn.isSpawned())  return;
     if (!pawn.isSelected()) return;
 
@@ -102,6 +110,22 @@ void PawnsManager::movePawn(Pawn &pawn, int dice)
         }
     }
 }
+
+bool PawnsManager::pawnMatchesColor(Pawn &pawn, raylib::Color color) 
+{
+    return pawn.getColor() == color;
+}
+
+Pawn *PawnsManager::getSelectedPawn() 
+{
+    for(auto &pawn : *pawns_)
+    {
+        if(pawn.isSelected())
+            return &pawn;
+    }
+    return nullptr;
+}
+
 
 void PawnsManager::deselectAllPawns()
 {
@@ -147,7 +171,7 @@ void PawnsManager::selectPawn(Pawn &pawn)
     {
         p.deselect();
     }
-
+    
     pawn.select();
 }
 

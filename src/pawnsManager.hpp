@@ -29,9 +29,14 @@ class PawnsManager
     static void renderPawns();  // Renders and renders with outward outline
 
     // Functions for a chosen Pawn
+    static void spawnPawn(Pawn &pawn);
     static void movePawn(Pawn &pawn, int amount);
-    
+    static bool pawnMatchesColor(Pawn &pawn, raylib::Color color); // useless tbh
+
+    static Pawn *getSelectedPawn();
+
     // Style Helpers for Pawns
+    // highlight pawns of color and hide pawns of color may be deprecated soon
     static void highlightPawnsOfColor(raylib::Color playerColor);  // Used to highlight current player via color
     static void hidePawnsOfColor(raylib::Color playerColor);       // Used to hide inactive player pawn via color
     static void deselectAllPawns();                                // Deselects All Pawns and selects none

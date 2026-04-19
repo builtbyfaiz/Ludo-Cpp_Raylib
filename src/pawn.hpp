@@ -15,9 +15,9 @@ class Pawn
     raylib::Color color;
 
     // Pawn Styling
-    bool hidden      = false;  // For Inactive player pawns
-    bool highlighted = false;  // Based on turn
-    bool selected    = false;  // Based on click
+    bool hidden      = false;  // For Inactive player pawns or won pawns
+    bool highlighted = false;  // Based on turn, valid moveable pawns
+    bool selected    = false;  // Based on click,
 
     bool spawned   = false;
     bool onWinPath = false;
