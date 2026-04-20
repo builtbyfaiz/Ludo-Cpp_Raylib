@@ -25,6 +25,8 @@ int Cell::getPathID() { return pathID_; }
 int Cell::getHomeID() { return homeID_; }
 int Cell::getWinPathID() { return winPathID_; }
 
+bool Cell::isSafe() { return safe_; };
+
 raylib::Color Cell::getColor() { return color; }
 raylib::Rectangle Cell::getRect() { return rect; }
 

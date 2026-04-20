@@ -7,9 +7,11 @@ class Cell
   private:
     const int gridID_, pathID_, homeID_, winPathID_;
     
+    bool safe_ = false; // If cell is marked as safe cell
+
     raylib::Rectangle rect;
     raylib::Color color;
-    raylib::Color outlineColor = LUDO_GRAY;
+    raylib::Color outlineColor = LUDO_BLACK;
     
     float outlineThickness = 0;
 
@@ -20,10 +22,11 @@ class Cell
          const int gridID    = 0,
          const int pathID    = 0,
          const int homeID    = 0,
-         const int winPathID = 0)
+         const int winPathID = 0,
+         const bool safe     = 0)
 
         : rect(r), color(c), gridID_(gridID), pathID_(pathID), homeID_(homeID),
-          winPathID_(winPathID) {}
+          winPathID_(winPathID), safe_(safe) {}
 
     void render();
 
@@ -32,6 +35,8 @@ class Cell
     int getPathID();
     int getHomeID();
     int getWinPathID();
+
+    bool isSafe();
 
     raylib::Color getColor();
     raylib::Rectangle getRect();

@@ -82,7 +82,7 @@ void Game::advanceTurn()
 void Game::rollDice()
 {
     dice = GetRandomValue(1, 6);
-    std::cout << currentPlayer->name << " Rolled a " << dice << ", Make your move and Press R\n";
+    std::cout << currentPlayer->name << " Rolled a " << dice << ", Make your move and Press M\n";
 }
 
 // GAME LOOP
@@ -171,8 +171,8 @@ void Game::render()
         std::cout << fontSize;
     }
 
-    int textX = round((GetScreenWidth() - fontSize + 25) / 2.0);
-    int textY = round((GetScreenHeight() - fontSize) / 2.0);
+    int textX = round((GetScreenWidth()  - fontSize + 25) / 2.0);
+    int textY = round((GetScreenHeight() - fontSize     ) / 2.0);
 
     BeginDrawing();
     ClearBackground(raylib::BLACK);

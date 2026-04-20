@@ -26,18 +26,19 @@ void Cells::init()
             raylib::Color     color = boardColorGrid(y, x);
             raylib::Rectangle rect  = {x * width, y * height, width, height};
 
-            int gridID    = y * 15 + x + 1;             // 1 - 255
-            int pathID    = pathIDGrid[y][x];           // 1 - 52
-            int homeID    = homeIDGrid[y][x];           // 1 - 16
-            int winPathID = winPathIDGrid[y][x] - '0';  // Ascii to Int, #TODO will turn it into direct func soon
+            int  gridID     = y * 15 + x + 1;             // 1 - 255
+            int  pathID     = pathIDGrid[y][x];           // 1 - 52
+            int  homeID     = homeIDGrid[y][x];           // 1 - 16
+            bool isCellSafe = safeCellsGrid[y][x];
+            int  winPathID  = winPathIDGrid[y][x] - '0';  // Ascii to Int, #TODO will turn it into direct func soon
 
-            // std::cout << width << height;
             Cell cell(rect,     // Rectangle [X, Y, Size]
                       color,    // Color from legend                      
                       gridID,   // Grid ID... All Cells Numerized
                       pathID,   // Path Id of Direct path that all pawns move on
                       homeID,   // Base Cells Id
-                      winPathID // Special cell ID, (1-6 win path)
+                      winPathID, // Special cell ID, (1-6 win path)
+                      isCellSafe
             );
 
             if (cell.getWinPathID() > 0 || cell.getPathID() > 0)
