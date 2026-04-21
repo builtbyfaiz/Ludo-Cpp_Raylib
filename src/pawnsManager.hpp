@@ -31,8 +31,10 @@ class PawnsManager
     // Functions for a chosen Pawn
     static void spawnPawn(Pawn &pawn);
     static void movePawn(Pawn &pawn, int amount);
+
     static bool pawnMatchesColor(Pawn &pawn, raylib::Color color); // useless tbh
 
+    // Util Functions
     static Pawn *getSelectedPawn();
 
     // Style Helpers for Pawns

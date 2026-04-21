@@ -6,6 +6,7 @@
 // Pawn will always be initiated to a home Cell, Color is inferred from Cell.
 Pawn::Pawn(Cell *hC) : homeCell(hC), color(pawnIdToColor[hC->getHomeID()]), ID(hC->getHomeID()) {}
 
+// A function which translationally moves the pawn and centers on provided cell.
 void Pawn::moveTo(Cell *cell)
 {
     currentCell = cell;

@@ -19,6 +19,23 @@ void Cell::render()
     // DrawText(std::to_string(ID).c_str(), textX, textY, fontSize, BLACK); // Draw numbers in them, also MAGIC nums :P
 }
 
+void Cell::addPawn(Pawn *pawn) 
+{
+    pawnsOnCell.emplace_back(pawn);
+}
+
+void Cell::removePawn(Pawn *pawn) 
+{
+    for (int i = 0; i < pawnsOnCell.size(); i++) 
+    {
+        if (pawnsOnCell[i] == pawn) 
+        {
+            pawnsOnCell.erase(pawnsOnCell.begin() + i); // Remove stored pawn at index i
+            break;
+        }
+    }
+}
+
 // Getter Methods
 int Cell::getGridID() { return gridID_; }
 int Cell::getPathID() { return pathID_; }

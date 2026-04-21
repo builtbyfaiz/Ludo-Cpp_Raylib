@@ -1,6 +1,5 @@
 #pragma once
 #include "Globals.hpp"
-#include "raylib-cpp.hpp"
 #include "Pawn.hpp"
 #include <vector>
 
@@ -12,7 +11,7 @@ class Cell
     
     bool safe_ = false; // If cell is marked as safe cell
 
-    // std::vector<Pawn> pawns;
+    std::vector<Pawn*> pawnsOnCell;
 
     raylib::Rectangle rect;
     raylib::Color color;
@@ -35,12 +34,16 @@ class Cell
 
     void render();
 
+    void addPawn(Pawn *pawn);
+    void removePawn(Pawn *pawn);
+
     // Getters
     int getGridID();
     int getPathID();
     int getHomeID();
     int getWinPathID();
 
+    int getPawnsOnTop();
     bool isSafe();
 
     raylib::Color getColor();

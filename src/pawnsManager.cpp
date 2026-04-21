@@ -92,6 +92,7 @@ void PawnsManager::movePawn(Pawn &pawn, int dice)
 
     int newPathID = pawn.currentCell->getPathID() + dice;
     
+    
     // This is to allow looping around the path
     if (newPathID > 52)
         newPathID -= 52;
@@ -103,7 +104,10 @@ void PawnsManager::movePawn(Pawn &pawn, int dice)
         {
             if (cells_->grid[i][j].getPathID() == newPathID)
             {
-                pawn.moveTo(&cells_->grid[i][j]);
+                pawn.currentCell->removePawn(&pawn); // Remove it from its current cell
+                pawn.moveTo(&cells_->grid[i][j]);    // Move to new cell and set that as current
+                cells_->grid[i][j].addPawn(&pawn);   // Add Pawn to new cell 
+
                 pawn.score += dice;
                 return;
             }
