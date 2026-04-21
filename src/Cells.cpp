@@ -32,11 +32,11 @@ void Cells::init()
             bool isCellSafe = safeCellsGrid[y][x];
             int  winPathID  = winPathIDGrid[y][x] - '0';  // Ascii to Int, #TODO will turn it into direct func soon
 
-            Cell cell(rect,     // Rectangle [X, Y, Size]
-                      color,    // Color from legend                      
-                      gridID,   // Grid ID... All Cells Numerized
-                      pathID,   // Path Id of Direct path that all pawns move on
-                      homeID,   // Base Cells Id
+            Cell cell(rect,      // Rectangle [X, Y, Size]
+                      color,     // Color from legend                      
+                      gridID,    // Grid ID... All Cells Numerized
+                      pathID,    // Path Id of Direct path that all pawns move on
+                      homeID,    // Base Cells Id
                       winPathID, // Special cell ID, (1-6 win path)
                       isCellSafe
             );

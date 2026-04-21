@@ -1,5 +1,8 @@
 #pragma once
-#include "globals.hpp"
+#include "Globals.hpp"
+#include "raylib-cpp.hpp"
+#include "Pawn.hpp"
+#include <vector>
 
 // clang-format off
 class Cell
@@ -8,6 +11,8 @@ class Cell
     const int gridID_, pathID_, homeID_, winPathID_;
     
     bool safe_ = false; // If cell is marked as safe cell
+
+    // std::vector<Pawn> pawns;
 
     raylib::Rectangle rect;
     raylib::Color color;
