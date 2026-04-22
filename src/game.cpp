@@ -65,7 +65,7 @@ void Game::hideInactivePlayerPawns()
     }
 }
 
-void Game::advanceTurn()
+void Game::advanceTurnToNextPlayer()
 {
     do
     {
@@ -136,6 +136,7 @@ void Game::update()
     else if (GameRules::canMove(*selectedPawn))
     {
         PawnsManager::movePawn(*selectedPawn, dice);
+        //checkkill
         moveMade = true;
     }
     else
@@ -144,8 +145,9 @@ void Game::update()
         return; // Wait for a better selection of pawn
     }
     
-    if (dice != 6 || !moveMade) // Advance turn if dice is not 6 OR a valid move has been made
-        advanceTurn();
+    if ((dice != 6 && moveMade) || !movesAvailable) // Advance turn if a valid move has been made or no moves available
+        advanceTurnToNextPlayer();
+
 
     rollDice();
     PawnsManager::deselectAllPawns();

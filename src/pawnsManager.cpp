@@ -14,24 +14,24 @@ std::vector<Pawn> *PawnsManager::pawns_;
 
 PawnsManager::Outline PawnsManager::getOutline(Pawn &pawn)
 {
-    float         thickness = OUTLINE_THICKNESS_DEFAULT;
-    raylib::Color color     = OUTLINE_COLOR_DEFAULT;
+    float thickness = OUTLINE_THICKNESS_DEFAULT;
+    raylib::Color color = OUTLINE_COLOR_DEFAULT;
 
     if (pawn.isHighlighted())
     {
-        color     = OUTLINE_COLOR_HIGHLIGHT;
+        color = OUTLINE_COLOR_HIGHLIGHT;
         thickness = OUTLINE_THICKNESS_HIGHLIGHT;
     }
 
     if (pawn.isSelected())
     {
-        color     = OUTLINE_COLOR_SELECTION;
+        color = OUTLINE_COLOR_SELECTION;
         thickness = OUTLINE_THICKNESS_SELECTION;
     }
 
     if (pawn.isHidden())
     {
-        color     = raylib::Color(0, 0, 0, 0);
+        color = raylib::Color(0, 0, 0, 0);
         thickness = 0.0f;
     }
 
@@ -75,11 +75,11 @@ void PawnsManager::renderPawns()
         pawn.renderWithOutline(getOutline(pawn).color, getOutline(pawn).thickness);
 }
 
-void PawnsManager::spawnPawn(Pawn &pawn) 
+void PawnsManager::spawnPawn(Pawn &pawn)
 {
-    if (!pawn.isSelected()) 
+    if (!pawn.isSelected())
         return;
-        
+
     pawn.spawn();
 }
 
@@ -87,49 +87,54 @@ void PawnsManager::spawnPawn(Pawn &pawn)
 void PawnsManager::movePawn(Pawn &pawn, int dice)
 {
     // Return if the requested move is not valid, redundant validation for good measure
-    if (!pawn.isSpawned())  return;
-    if (!pawn.isSelected()) return;
+    if (!pawn.isSpawned())
+        return;
+    if (!pawn.isSelected())
+        return;
 
     int newPathID = pawn.currentCell->getPathID() + dice;
-    
-    
+
     // This is to allow looping around the path
     if (newPathID > 52)
         newPathID -= 52;
 
-    // Find the cell with needed newPathID    
+    // Find the cell with needed newPathID
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 15; j++)
         {
             if (cells_->grid[i][j].getPathID() == newPathID)
             {
-                pawn.currentCell->removePawn(&pawn); // Remove it from its current cell
-                pawn.moveTo(&cells_->grid[i][j]);    // Move to new cell and set that as current
-                cells_->grid[i][j].addPawn(&pawn);   // Add Pawn to new cell 
-
+                pawn.moveTo(&cells_->grid[i][j]); // Move to new cell and set that as currentCell
                 pawn.score += dice;
+                // Add primitive Death mechanism, simple,
+                for (auto &storedPawn : pawn.currentCell->pawnsOnCell)
+                {
+                    if (storedPawn->getColor() != pawn.getColor())
+                    {
+                        storedPawn->die();
+                    }
+                }
                 return;
             }
         }
     }
 }
 
-bool PawnsManager::pawnMatchesColor(Pawn &pawn, raylib::Color color) 
+bool PawnsManager::pawnMatchesColor(Pawn &pawn, raylib::Color color)
 {
     return pawn.getColor() == color;
 }
 
-Pawn *PawnsManager::getSelectedPawn() 
+Pawn *PawnsManager::getSelectedPawn()
 {
-    for(auto &pawn : *pawns_)
+    for (auto &pawn : *pawns_)
     {
-        if(pawn.isSelected())
+        if (pawn.isSelected())
             return &pawn;
     }
     return nullptr;
 }
-
 
 void PawnsManager::deselectAllPawns()
 {
@@ -175,7 +180,7 @@ void PawnsManager::selectPawn(Pawn &pawn)
     {
         p.deselect();
     }
-    
+
     pawn.select();
 }
 

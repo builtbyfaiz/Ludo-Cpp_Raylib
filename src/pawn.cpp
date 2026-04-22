@@ -9,9 +9,13 @@ Pawn::Pawn(Cell *hC) : homeCell(hC), color(pawnIdToColor[hC->getHomeID()]), ID(h
 // A function which translationally moves the pawn and centers on provided cell.
 void Pawn::moveTo(Cell *cell)
 {
+    if (currentCell != nullptr)
+        currentCell->removePawn(this);
     currentCell = cell;
+    currentCell->addPawn(this);
+
     Vector2 newPos =
-          currentCell->getRect().GetPosition() +
+        currentCell->getRect().GetPosition() +
         ((currentCell->getRect().GetSize() - rect.GetSize()) / 2); // Gets Pos right in mid of cell
 
     rect.SetPosition(newPos); // sets pawns rect to middle of cells rect
@@ -20,12 +24,13 @@ void Pawn::moveTo(Cell *cell)
 void Pawn::spawn()
 {
     moveTo(spawnCell);
-    score   = 1;
+    score = 1;
     spawned = true;
 }
 
 void Pawn::die()
 {
+    spawned = false;
     moveTo(homeCell);
     score = 0;
 }
@@ -35,9 +40,9 @@ void Pawn::renderWithOutline(raylib::Color outlineColor, float thickness)
 {
     raylib::Rectangle rectToRender = rect;
 
-    rectToRender.x      -= thickness;
-    rectToRender.y      -= thickness;
-    rectToRender.width  += thickness * 2;
+    rectToRender.x -= thickness;
+    rectToRender.y -= thickness;
+    rectToRender.width += thickness * 2;
     rectToRender.height += thickness * 2;
 
     rectToRender.Draw(color);
@@ -62,14 +67,14 @@ bool Pawn::isSpawned() { return spawned; }
 void Pawn::setColor(raylib::Color c) { this->color = c; }
 
 // Outline Style Setters
-void Pawn::hide() 
+void Pawn::hide()
 {
     hidden = true;
     color.SetA(0); // Make Pawn transparent
 }
-void Pawn::unhide() 
+void Pawn::unhide()
 {
-    hidden = false; 
+    hidden = false;
     color.SetA(255); // Make Pawn opaque
 }
 

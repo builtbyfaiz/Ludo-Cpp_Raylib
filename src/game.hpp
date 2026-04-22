@@ -26,7 +26,7 @@ class Game
 
     void hideInactivePlayerPawns();
     
-    void advanceTurn();
+    void advanceTurnToNextPlayer();
     void rollDice();
 
     // Game Loop

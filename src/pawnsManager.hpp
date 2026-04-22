@@ -36,7 +36,8 @@ class PawnsManager
 
     // Util Functions
     static Pawn *getSelectedPawn();
-
+    // static void applyKills();
+    
     // Style Helpers for Pawns
     // highlight pawns of color and hide pawns of color may be deprecated soon
     static void highlightPawnsOfColor(raylib::Color playerColor);  // Used to highlight current player via color

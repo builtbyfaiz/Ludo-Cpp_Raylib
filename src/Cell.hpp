@@ -11,15 +11,14 @@ class Cell
     
     bool safe_ = false; // If cell is marked as safe cell
 
-    std::vector<Pawn*> pawnsOnCell;
-
+    
     raylib::Rectangle rect;
     raylib::Color color;
     raylib::Color outlineColor = LUDO_BLACK;
     
     float outlineThickness = 0;
-
-  public:
+    
+    public:
     // Default Constructor with default values
     Cell(raylib::Rectangle r = {0, 0, 0, 0},
          raylib::Color     c = raylib::WHITE,
@@ -32,9 +31,9 @@ class Cell
         : rect(r), color(c), gridID_(gridID), pathID_(pathID), homeID_(homeID),
           winPathID_(winPathID), safe_(safe) {}
 
-    void render();
-
-    void addPawn(Pawn *pawn);
+          void render();
+          
+          void addPawn(Pawn *pawn);
     void removePawn(Pawn *pawn);
 
     // Getters
@@ -43,9 +42,10 @@ class Cell
     int getHomeID();
     int getWinPathID();
 
+    std::vector<Pawn*> pawnsOnCell;
     int getPawnsOnTop();
     bool isSafe();
-
+    
     raylib::Color getColor();
     raylib::Rectangle getRect();
 
