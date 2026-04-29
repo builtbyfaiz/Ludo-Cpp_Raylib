@@ -8,7 +8,8 @@ In development, not feature complete.
 ## Controls
 | Input | Action |
 |-------|--------|
-| Mouse | Select and move pieces |
+| Mouse | Select pieces |
+| M     | To Finalize Move |
 
 ## Building
 

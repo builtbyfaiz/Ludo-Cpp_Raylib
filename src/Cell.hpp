@@ -53,3 +53,4 @@ class Cell
     void setColor(raylib::Color color);
     void setOutlineThickness(float thickness);
 };
+

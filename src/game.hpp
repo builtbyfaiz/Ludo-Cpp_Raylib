@@ -22,6 +22,7 @@ class Game
     std::vector<Player> players;
 
     Game();
+    
     void initPlayers();
 
     void hideInactivePlayerPawns();
