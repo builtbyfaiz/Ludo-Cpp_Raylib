@@ -15,8 +15,8 @@ class PawnsManager
 
     struct Outline
     {
-        raylib::Color color;
-        float thickness;
+        raylib::Color color{};
+        float thickness{};
     }; // helper class
 
     static Outline getOutline(Pawn &pawn); // Helper function to obtain outline color and thickness of a pawn

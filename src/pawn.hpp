@@ -9,9 +9,9 @@ class Pawn
     int ID; // Unique identifier to be assigned to each pawn.
 
     // Pawn Base
-    float size = 30;
+    const float SIZE = 30;
 
-    raylib::Rectangle rect = {0, 0, size, size}; // Default
+    raylib::Rectangle rect = {0, 0, SIZE, SIZE}; // Default
     raylib::Color color;
 
     // Pawn Styling

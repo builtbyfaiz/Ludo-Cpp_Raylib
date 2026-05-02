@@ -7,26 +7,25 @@
 #include <string>
 
 // clang-format off
-
 // Initialie all the cells of the board
 void Cells::init()
 {
     grid.clear(); // Start by clearing grid so, we can use init as reset.
 
     // fill the 15 By 15 block grid by using nested for.
-    for (size_t y = 0; y < 15; y++)
+    for (int y = 0; y < GRID_SIZE; y++)
     {
         // Create a row i.e an array made up of cells.
         std::vector<Cell> cellsRow; 
-        for (size_t x = 0; x < 15; x++)
+        for (int x = 0; x < GRID_SIZE; x++)
         {
-            float width  = GetScreenWidth()  / 15.0;
-            float height = GetScreenHeight() / 15.0;
+            float width  = GetScreenWidth()  / GRID_SIZE;
+            float height = GetScreenHeight() / GRID_SIZE;
 
             raylib::Color     color = boardColorGrid(y, x);
             raylib::Rectangle rect  = {x * width, y * height, width, height};
 
-            int  gridID     = y * 15 + x + 1;             // 1 - 255
+            int  gridID     = y * GRID_SIZE + x + 1;             // 1 - 255
             int  pathID     = pathIDGrid[y][x];           // 1 - 52
             int  homeID     = homeIDGrid[y][x];           // 1 - 16
             bool isCellSafe = safeCellsGrid[y][x];

@@ -94,14 +94,16 @@ void PawnsManager::movePawn(Pawn &pawn, int dice)
 
     int newPathID = pawn.currentCell->getPathID() + dice;
 
+    const int TOTAL_PATH_CELLS = 52;
+
     // This is to allow looping around the path
-    if (newPathID > 52)
-        newPathID -= 52;
+    if (newPathID > TOTAL_PATH_CELLS)
+        newPathID -= TOTAL_PATH_CELLS;
 
     // Find the cell with needed newPathID
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < cells_->GRID_SIZE; i++)
     {
-        for (int j = 0; j < 15; j++)
+        for (int j = 0; j < cells_->GRID_SIZE; j++)
         {
             if (cells_->grid[i][j].getPathID() == newPathID)
             {
