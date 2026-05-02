@@ -30,7 +30,7 @@ inline std::map<int, raylib::Color> pawnIdToColor = {
 };
 
 // Returns Vector2 of 2d Array indices corresponding to the spawn cell on a 15 by 15 Grid
-inline raylib::Vector2 ColorToPawnSpawnPos(const raylib::Color color)
+inline const raylib::Vector2 ColorToPawnSpawnPos(const raylib::Color color)
 {
     // inline keyword is here being used to prevent multiple definitions, std::map did not work for custom datatypes
     if(color == LUDO_RED)    return {1, 6};
