@@ -19,10 +19,10 @@ Game::Game() : window(raylib::Window(750, 750, "Ludo", FLAG_VSYNC_HINT))
 void Game::initPlayers()
 {
     // Initialize All default Players, and then deactivate unused players
-    players.emplace_back(Player("Player1", 1, LUDO_RED));
-    players.emplace_back(Player("Player2", 2, LUDO_GREEN));
-    players.emplace_back(Player("PLayer3", 3, LUDO_YELLOW));
-    players.emplace_back(Player("Player4", 4, LUDO_BLUE));
+    players.emplace_back("Player1", 1, LUDO_RED);
+    players.emplace_back("Player2", 2, LUDO_GREEN);
+    players.emplace_back("PLayer3", 3, LUDO_YELLOW);
+    players.emplace_back("Player4", 4, LUDO_BLUE);
 
     // Ask for players actively playing, and exit loop when valid input
     do
